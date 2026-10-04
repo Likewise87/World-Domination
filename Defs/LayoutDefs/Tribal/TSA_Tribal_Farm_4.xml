@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <KCSG.StructureLayoutDef>
+    <defName>TSA_Tribal_Farm_4</defName>
+    <terrainGrid>
+      <li>.,.,.,.,.,.,.,.,.</li>
+      <li>.,Soil,Soil,Soil,Soil,Soil,Soil,Soil,.</li>
+      <li>.,Soil,Soil,Soil,Soil,Soil,Soil,Soil,.</li>
+      <li>.,Soil,Soil,Soil,Soil,Soil,Soil,Soil,.</li>
+      <li>.,Soil,Soil,Soil,Soil,Soil,Soil,Soil,.</li>
+      <li>.,Soil,Soil,Soil,Soil,Soil,Soil,Soil,.</li>
+      <li>.,Soil,Soil,Soil,Soil,Soil,Soil,Soil,.</li>
+      <li>.,Soil,Soil,Soil,Soil,Soil,Soil,Soil,.</li>
+      <li>.,Soil,Soil,Soil,Soil,Soil,Soil,Soil,.</li>
+      <li>.,Soil,Soil,Soil,Soil,Soil,Soil,Soil,.</li>
+      <li>.,Soil,Soil,Soil,Soil,Soil,Soil,Soil,.</li>
+      <li>.,Soil,Soil,Soil,Soil,Soil,Soil,Soil,.</li>
+      <li>.,Soil,Soil,Soil,Soil,Soil,Soil,Soil,.</li>
+      <li>.,Soil,Soil,Soil,Soil,Soil,Soil,Soil,.</li>
+      <li>.,.,.,.,.,.,.,.,.</li>
+    </terrainGrid>
+    <layouts>
+      <li>
+        <li>.,.,.,.,.,.,.,.,.</li>
+        <li>.,.,.,.,.,.,.,.,.</li>
+        <li>.,.,Plant_Devilstrand,Plant_Devilstrand,Plant_Devilstrand,Plant_Devilstrand,Plant_Devilstrand,.,.</li>
+        <li>.,.,Plant_Devilstrand,Plant_Devilstrand,Plant_Devilstrand,Plant_Devilstrand,Plant_Devilstrand,.,.</li>
+        <li>.,.,Plant_Devilstrand,Plant_Devilstrand,Plant_Devilstrand,Plant_Devilstrand,Plant_Devilstrand,.,.</li>
+        <li>.,.,Plant_Devilstrand,Plant_Devilstrand,Plant_Devilstrand,Plant_Devilstrand,Plant_Devilstrand,.,.</li>
+        <li>.,.,Plant_Devilstrand,Plant_Devilstrand,Plant_Devilstrand,Plant_Devilstrand,Plant_Devilstrand,.,.</li>
+        <li>.,.,Plant_Devilstrand,Plant_Devilstrand,Plant_Devilstrand,Plant_Devilstrand,Plant_Devilstrand,.,.</li>
+        <li>.,.,Plant_Devilstrand,Plant_Devilstrand,Plant_Devilstrand,Plant_Devilstrand,Plant_Devilstrand,.,.</li>
+        <li>.,.,Plant_Devilstrand,Plant_Devilstrand,Plant_Devilstrand,Plant_Devilstrand,Plant_Devilstrand,.,.</li>
+        <li>.,.,Plant_Devilstrand,Plant_Devilstrand,Plant_Devilstrand,Plant_Devilstrand,Plant_Devilstrand,.,.</li>
+        <li>.,.,Plant_Devilstrand,Plant_Devilstrand,Plant_Devilstrand,Plant_Devilstrand,Plant_Devilstrand,.,.</li>
+        <li>.,.,Plant_Devilstrand,Plant_Devilstrand,Plant_Devilstrand,Plant_Devilstrand,Plant_Devilstrand,.,.</li>
+        <li>.,.,.,.,.,.,.,.,.</li>
+        <li>.,.,.,.,.,.,.,.,.</li>
+      </li>
+    </layouts>
+
+    <tags>
+      <li>TSA_Tribal_Farm</li>
+    </tags>
+  </KCSG.StructureLayoutDef>
+</Defs>

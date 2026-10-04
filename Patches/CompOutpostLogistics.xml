@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+    <Operation Class="PatchOperationConditional">
+        <xpath>/Defs/WorldObjectDef[@ParentName="OutpostBase"]/comps</xpath>
+        
+        <nomatch Class="PatchOperationAdd">
+            <xpath>/Defs/WorldObjectDef[@ParentName="OutpostBase"]</xpath>
+            <value>
+                <comps>
+                    <li Class="TSA_WorldDomination.CompProperties_OutpostLogistics" />
+                </comps>
+            </value>
+        </nomatch>
+        
+        <match Class="PatchOperationAdd">
+            <xpath>/Defs/WorldObjectDef[@ParentName="OutpostBase"]/comps</xpath>
+            <value>
+                <li Class="TSA_WorldDomination.CompProperties_OutpostLogistics" />
+            </value>
+        </match>
+    </Operation>
+</Patch>

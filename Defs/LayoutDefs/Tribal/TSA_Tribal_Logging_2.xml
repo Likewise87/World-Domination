@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <KCSG.StructureLayoutDef>
+    <defName>TSA_Tribal_Logging_2</defName>
+<layouts>
+      <li>
+        <li>Fence_WoodLog,Fence_WoodLog,Fence_WoodLog,Fence_WoodLog,Fence_WoodLog,Fence_WoodLog,Fence_WoodLog,.,.,.,.,.,.,.,.</li>
+        <li>.,.,.,VFEPD_TeakTree,.,.,.,.,.,VFEPD_WoodenLogsLarge_North,.,.,.,.,TorchLamp</li>
+        <li>VFEPD_TeakTree,.,.,.,.,VFEPD_TeakTree,.,.,VFEPD_TeakTree,Wall_WoodLog,Wall_WoodLog,Wall_WoodLog,Door_WoodLog,Wall_WoodLog,VFEPD_WoodenLogs_South</li>
+        <li>.,VFEPD_TeakTree,.,.,VFEPD_TeakTree,.,.,.,Wall_WoodLog,Wall_WoodLog,Shelf_WoodLog_North,.,.,Wall_WoodLog,VFEPD_WoodenLogs_West</li>
+        <li>.,.,.,.,.,VFEPD_TeakTree,.,VFEPD_TeakTree,Wall_WoodLog,.,.,.,.,Wall_WoodLog,Wall_WoodLog</li>
+        <li>VFEPD_WoodenWagon_North,.,VFEPD_TeakTree,VFEPD_TeakTree,.,.,.,.,Wall_WoodLog,Shelf_WoodLog_East,.,.,.,Shelf_WoodLog_West,Wall_WoodLog</li>
+        <li>.,.,.,.,.,VFEPD_TeakTree,VFEPD_TeakTree,.,Wall_WoodLog,Wall_WoodLog,.,TorchLamp,.,.,Wall_WoodLog</li>
+        <li>.,.,.,.,.,.,.,.,VFEPD_WoodenLogs_West,Wall_WoodLog,.,.,VFEPD_WoodenLogs_South,VFEPD_WoodenLogs_South,Wall_WoodLog</li>
+        <li>Fence_WoodLog,.,VFEPD_TeakTree,.,VFEPD_TeakTree,.,.,.,VFEPD_WoodenLogs_West,Wall_WoodLog,AnimalFlap_Leather_Plain,Wall_WoodLog,Wall_WoodLog,Wall_WoodLog,Wall_WoodLog</li>
+        <li>Fence_WoodLog,.,.,.,VFEPD_BoxLarge_North,.,.,.,Wall_WoodLog,Wall_WoodLog,.,.,.,Wall_WoodLog,.</li>
+        <li>Fence_WoodLog,.,.,VFEPD_BoxLarge_West,VFEPD_BoxSmall_South,TorchLamp,.,.,Wall_WoodLog,.,TorchLamp,.,Bedroll_Leather_Light_South,Wall_WoodLog,.</li>
+        <li>Fence_WoodLog,.,.,.,VFEPD_BoxLarge_East,VFEPD_BoxSmall_West,.,.,Wall_WoodLog,Wall_WoodLog,Wall_WoodLog,Wall_WoodLog,Wall_WoodLog,Wall_WoodLog,.</li>
+        <li>Fence_WoodLog,Fence_WoodLog,Fence_WoodLog,.,.,.,.,.,.,.,.,.,.,.,.</li>
+      </li>
+    </layouts>
+    <terrainGrid>
+      <li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
+      <li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
+      <li>.,.,.,.,.,.,.,.,.,.,.,.,StrawMatting,.,.</li>
+      <li>.,.,.,.,.,.,.,.,.,StrawMatting,StrawMatting,StrawMatting,StrawMatting,.,.</li>
+      <li>.,.,.,.,.,.,.,.,.,StrawMatting,StrawMatting,StrawMatting,StrawMatting,.,.</li>
+      <li>.,.,.,.,.,.,.,.,.,StrawMatting,StrawMatting,StrawMatting,StrawMatting,StrawMatting,.</li>
+      <li>.,.,.,.,.,.,.,.,.,.,StrawMatting,StrawMatting,StrawMatting,StrawMatting,.</li>
+      <li>.,.,.,.,.,.,.,.,.,.,StrawMatting,StrawMatting,StrawMatting,StrawMatting,.</li>
+      <li>.,.,.,.,.,.,.,.,.,.,WoodPlankFloor,.,.,.,.</li>
+      <li>.,.,.,.,.,.,.,.,.,WoodPlankFloor,WoodPlankFloor,WoodPlankFloor,WoodPlankFloor,WoodPlankFloor,.</li>
+      <li>.,.,.,.,.,.,.,.,.,WoodPlankFloor,WoodPlankFloor,WoodPlankFloor,WoodPlankFloor,WoodPlankFloor,.</li>
+      <li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
+      <li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
+    </terrainGrid>
+    <tags>
+      <li>TSA_Tribal_Logging</li>
+    </tags>
+  </KCSG.StructureLayoutDef>
+</Defs>

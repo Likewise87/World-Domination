@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <KCSG.StructureLayoutDef>
+    <defName>TSA_Tribal_Farm_1</defName>
+	    <terrainGrid>
+      <li>.,.,.,.,.,.,.,.,.,.,.,.,.</li>
+      <li>.,.,.,Soil,Soil,Soil,Soil,Soil,Soil,Soil,.,.,.</li>
+      <li>.,.,.,Soil,Soil,Soil,Soil,Soil,Soil,Soil,.,.,.</li>
+      <li>.,Soil,Soil,Soil,Soil,Soil,Soil,Soil,Soil,Soil,Soil,Soil,.</li>
+      <li>.,Soil,Soil,Soil,Soil,Soil,Soil,Soil,Soil,Soil,Soil,Soil,.</li>
+      <li>.,Soil,Soil,Soil,Soil,Soil,Soil,Soil,Soil,Soil,Soil,Soil,.</li>
+      <li>.,Soil,Soil,Soil,Soil,Soil,Soil,Soil,Soil,Soil,Soil,Soil,.</li>
+      <li>.,Soil,Soil,Soil,Soil,Soil,Soil,Soil,Soil,Soil,Soil,Soil,.</li>
+      <li>.,Soil,Soil,Soil,Soil,Soil,Soil,Soil,Soil,Soil,Soil,Soil,.</li>
+      <li>.,Soil,Soil,Soil,Soil,Soil,Soil,Soil,Soil,Soil,Soil,Soil,.</li>
+      <li>.,.,.,Soil,Soil,Soil,Soil,Soil,Soil,Soil,.,.,.</li>
+      <li>.,.,.,Soil,Soil,Soil,Soil,Soil,Soil,Soil,.,.,.</li>
+      <li>.,.,.,.,.,.,.,.,.,.,.,.,.</li>
+    </terrainGrid>
+    <layouts>
+      <li>
+        <li>.,.,Wall_WoodLog,Fence_WoodLog,Fence_WoodLog,Fence_WoodLog,FenceGate_WoodLog,Fence_WoodLog,Fence_WoodLog,Fence_WoodLog,Wall_WoodLog,.,.</li>
+        <li>.,Wall_WoodLog,Wall_WoodLog,.,.,.,.,.,.,.,Wall_WoodLog,Wall_WoodLog,.</li>
+        <li>Wall_WoodLog,Wall_WoodLog,TorchLamp,.,.,.,Plant_Smokeleaf,.,.,.,TorchLamp,Wall_WoodLog,Wall_WoodLog</li>
+        <li>Fence_WoodLog,.,.,.,.,Plant_Smokeleaf,Plant_Smokeleaf,Plant_Smokeleaf,.,.,.,.,Fence_WoodLog</li>
+        <li>Fence_WoodLog,.,.,.,Plant_Smokeleaf,Plant_Smokeleaf,Plant_Smokeleaf,Plant_Smokeleaf,Plant_Smokeleaf,.,.,.,Fence_WoodLog</li>
+        <li>Fence_WoodLog,.,.,Plant_Smokeleaf,Plant_Smokeleaf,Plant_Smokeleaf,Plant_Smokeleaf,Plant_Smokeleaf,Plant_Smokeleaf,Plant_Smokeleaf,.,.,Fence_WoodLog</li>
+        <li>FenceGate_WoodLog,.,Plant_Smokeleaf,Plant_Smokeleaf,Plant_Smokeleaf,Plant_Smokeleaf,Column_WoodLog,Plant_Smokeleaf,Plant_Smokeleaf,Plant_Smokeleaf,Plant_Smokeleaf,.,FenceGate_WoodLog</li>
+        <li>Fence_WoodLog,.,.,Plant_Smokeleaf,Plant_Smokeleaf,Plant_Smokeleaf,Plant_Smokeleaf,Plant_Smokeleaf,Plant_Smokeleaf,Plant_Smokeleaf,.,.,Fence_WoodLog</li>
+        <li>Fence_WoodLog,.,.,.,Plant_Smokeleaf,Plant_Smokeleaf,Plant_Smokeleaf,Plant_Smokeleaf,Plant_Smokeleaf,.,.,.,Fence_WoodLog</li>
+        <li>Fence_WoodLog,.,.,.,.,Plant_Smokeleaf,Plant_Smokeleaf,Plant_Smokeleaf,.,.,.,.,Fence_WoodLog</li>
+        <li>Wall_WoodLog,Wall_WoodLog,TorchLamp,.,.,.,Plant_Smokeleaf,.,.,.,TorchLamp,Wall_WoodLog,Wall_WoodLog</li>
+        <li>.,Wall_WoodLog,Wall_WoodLog,.,.,.,.,.,.,.,Wall_WoodLog,Wall_WoodLog,.</li>
+        <li>.,.,Wall_WoodLog,Fence_WoodLog,Fence_WoodLog,Fence_WoodLog,FenceGate_WoodLog,Fence_WoodLog,Fence_WoodLog,Fence_WoodLog,Wall_WoodLog,.,.</li>
+      </li>
+    </layouts>
+
+    <tags>
+      <li>TSA_Tribal_Farm</li>
+    </tags>
+  </KCSG.StructureLayoutDef>
+</Defs>

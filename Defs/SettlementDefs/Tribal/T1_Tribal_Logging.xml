@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <KCSG.SettlementLayoutDef>
+    <defName>TSA_Tribal_T1_Logging</defName>
+    <settlementSize>40,40</settlementSize>
+    <avoidBridgeable>true</avoidBridgeable>
+    <avoidMountains>true</avoidMountains>
+    
+    <centerBuildings>
+      <centerSize>35,35</centerSize>
+      <spaceAround>1</spaceAround>
+      <allowedStructures>
+        <li>
+          <tag>TSA_Tribal_Barracks</tag>
+          <count>1~2</count>
+        </li>
+        <li>
+          <tag>TSA_Tribal_Stockpile</tag>
+          <count>0~1</count>
+        </li>
+        <li>
+          <tag>TSA_Tribal_Logging</tag>
+          <count>1~2</count>
+        </li>
+		<li>
+          <count>0~1</count>
+          <tag>TSA_Tribal_Recreation</tag>
+        </li>
+      </allowedStructures>
+    </centerBuildings>
+
+    <peripheralBuildings>
+      <allowedStructures>
+        <li>
+          <tag>TSA_Tribal_Barricade</tag>
+          <count>2~3</count>
+        </li>
+      </allowedStructures>
+    </peripheralBuildings>
+
+    <defenseOptions>
+      <pawnGroupMultiplier>0.35</pawnGroupMultiplier>
+    </defenseOptions>
+
+    <propsOptions>
+      <scatterProps>true</scatterProps>
+      <scatterMinDistance>5</scatterMinDistance>
+      <scatterMaxAmount>12</scatterMaxAmount>
+      <scatterPropsDefs>
+        <li MayRequire="VanillaExpanded.VFEPropsandDecor">VFEPD_BoxSmall</li>
+        <li MayRequire="VanillaExpanded.VFEPropsandDecor">VFEPD_WoodenLogsLarge</li>
+		<li MayRequire="VanillaExpanded.VFEPropsandDecor">VFEPD_WoodenWagon</li>
+		<li MayRequire="VanillaExpanded.VFEPropsandDecor">VFEPD_FilthDirt</li>
+		<li MayRequire="VanillaExpanded.VFEPropsandDecor">VFEPD_WoodenChest</li>
+      </scatterPropsDefs>
+    </propsOptions>
+
+    <stockpileOptions>
+      <stockpileValueMultiplier>0.5</stockpileValueMultiplier>
+      <fillStorageBuildings>true</fillStorageBuildings>
+      <fillWithDefs>
+        <li>MedicineHerbal</li>
+        <li>WoodLog</li>
+        <li>Jade</li>
+		<li>Cloth</li>
+      </fillWithDefs>
+    </stockpileOptions>
+  </KCSG.SettlementLayoutDef>
+</Defs>

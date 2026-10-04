@@ -1,0 +1,698 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+
+  <TSA_WD_Log_Grow>成长：强度 {0} -> {1}</TSA_WD_Log_Grow>
+  <TSA_WD_Log_Upgrade>升级：{0} -> {1}（发现 {2} 个邻居）</TSA_WD_Log_Upgrade>
+  <TSA_WD_Log_UpgradeFailedLimit>升级：失败。目标等级 {0} 已达到区域上限。</TSA_WD_Log_UpgradeFailedLimit>
+  <TSA_WD_Log_ExpandChanceFail>扩张：概率检查未通过。</TSA_WD_Log_ExpandChanceFail>
+  <TSA_WD_Log_ExpandSaturated>扩张：已饱和。T1数量（{0}/{1}）。</TSA_WD_Log_ExpandSaturated>
+  <TSA_WD_Log_ExpandSuccess>扩张：成功。{0} 建立了一个新的T1定居点。</TSA_WD_Log_ExpandSuccess>
+
+  <TSA_WD_Log_MinorInc_Obliterated>小型事件：定居点被摧毁（{0} -> {1}）</TSA_WD_Log_MinorInc_Obliterated>
+  <TSA_WD_Log_MinorInc_Downgrade>小型事件：-{0} 强度（{1} -> {2}）。降级至 {3}</TSA_WD_Log_MinorInc_Downgrade>
+  <TSA_WD_Log_MinorInc_Standard>小型事件：-{0} 强度（{1} -> {2}）</TSA_WD_Log_MinorInc_Standard>
+  <TSA_WD_Letter_MinorInc_Label>定居点被摧毁</TSA_WD_Letter_MinorInc_Label>
+  <TSA_WD_Letter_MinorInc_Text>发生了一起小型事件，彻底摧毁了你影响范围内的定居点 {0}。该地点目前已荒废。</TSA_WD_Letter_MinorInc_Text>
+
+  <TSA_WD_Log_MajorInc_Obliterated>重大事件：定居点被摧毁（{0} -> {1}）</TSA_WD_Log_MajorInc_Obliterated>
+  <TSA_WD_Log_MajorInc_Downgrade>重大事件：-{0} 强度（{1} -> {2}）。降级至 {3}</TSA_WD_Log_MajorInc_Downgrade>
+  <TSA_WD_Log_MajorInc_Standard>重大事件：-{0} 强度（{1} -> {2}）</TSA_WD_Log_MajorInc_Standard>
+  <TSA_WD_Letter_MajorInc_Label>定居点被摧毁</TSA_WD_Letter_MajorInc_Label>
+  <TSA_WD_Letter_MajorInc_Text>发生了一起重大事件，彻底摧毁了你影响范围内的定居点 {0}。该地点目前已荒废。</TSA_WD_Letter_MajorInc_Text>
+
+  <TSA_WD_Threat_BreakdownHeader>威胁倍率：{0}x\n（允许最小值：{1}x）\n\n动态范围内的活跃基地：\n</TSA_WD_Threat_BreakdownHeader>
+  <TSA_WD_Threat_BreakdownLine>- {0}：+{1}（T{2}，距离 {3}/{4}）</TSA_WD_Threat_BreakdownLine>
+  <TSA_WD_Letter_RaidPlayer_Label>世界主宰袭击：{0}</TSA_WD_Letter_RaidPlayer_Label>
+  <TSA_WD_Letter_RaidPlayer_Text>{0} 已经从世界地图发起了一场攻势。</TSA_WD_Letter_RaidPlayer_Text>
+  <TSA_WD_Log_Raid_PlayerAttack>袭击：攻击玩家殖民地</TSA_WD_Log_Raid_PlayerAttack>
+  <TSA_WD_Log_Raid_PlayerDefDetail>（殖民地）{0}：叙事者基础点数 {1}</TSA_WD_Log_Raid_PlayerDefDetail>
+
+  <TSA_WD_Log_Revolt_TierDrop>（降级至 {0}）</TSA_WD_Log_Revolt_TierDrop>
+  <TSA_WD_Log_Revolt_Entry>起义：{0} 从 {1} 的统治中解放。强度：{2} -> {3}{4}</TSA_WD_Log_Revolt_Entry>
+  <TSA_WD_Letter_Revolt_Label>派系复兴</TSA_WD_Letter_Revolt_Label>
+  <TSA_WD_Letter_Revolt_Text>政局动荡！派系 {0} 从隐匿中复苏，并夺取了如下地区的控制权：{1}。{2} 在起义中失去了这些领土。</TSA_WD_Letter_Revolt_Text>
+
+  <TSA_WD_Log_Raid_Aborted>袭击：已中止（防御方增援过强）</TSA_WD_Log_Raid_Aborted>
+  <TSA_WD_Log_Raid_Successful>袭击：成功</TSA_WD_Log_Raid_Successful>
+  <TSA_WD_Log_Raid_Failed>袭击：失败</TSA_WD_Log_Raid_Failed>
+  <TSA_WD_Log_Raid_Razed>袭击：已夷为平地</TSA_WD_Log_Raid_Razed>
+  <TSA_WD_Log_Raid_OutpostOccupied>袭击：前哨站被歼灭并占领</TSA_WD_Log_Raid_OutpostOccupied>
+  <TSA_WD_Log_Raid_OutpostWiped>袭击：前哨站被歼灭</TSA_WD_Log_Raid_OutpostWiped>
+  <TSA_WD_Log_Raid_AttBase>{0}（攻击方）：强度 {1} -> {2}</TSA_WD_Log_Raid_AttBase>
+  <TSA_WD_Log_Raid_DefBaseFinal>{0}（防御方）：强度 {1} -> {2}</TSA_WD_Log_Raid_DefBaseFinal>
+  <TSA_WD_Letter_OutpostRaided_Label>前哨站遭到袭击</TSA_WD_Letter_OutpostRaided_Label>
+  <TSA_WD_Letter_OutpostRaided_Text>{0} 被 {1} 攻占。人员失踪。</TSA_WD_Letter_OutpostRaided_Text>
+  <TSA_WD_Letter_OutpostDefended_Label>前哨站守卫成功</TSA_WD_Letter_OutpostDefended_Label>
+  <TSA_WD_Letter_OutpostDefended_Text>{0} 成功击退了来自 {1} 的进攻。</TSA_WD_Letter_OutpostDefended_Text>
+  <TSA_WD_Letter_NearbyRaid_Label>附近定居点遭到袭击</TSA_WD_Letter_NearbyRaid_Label>
+  <TSA_WD_Letter_NearbyRaid_Text>在你的影响范围内，{1} 派系的定居点（{0}）遭到了 {2} 的袭击。</TSA_WD_Letter_NearbyRaid_Text>
+
+  <TSA_WD_Tier1>等级 1</TSA_WD_Tier1>
+  <TSA_WD_Tier2>等级 2</TSA_WD_Tier2>
+  <TSA_WD_Tier3>等级 3</TSA_WD_Tier3>
+  <TSA_WD_SubType_Logging>伐木村</TSA_WD_SubType_Logging>
+  <TSA_WD_SubType_Mining>采矿村</TSA_WD_SubType_Mining>
+  <TSA_WD_SubType_Farming>农业村</TSA_WD_SubType_Farming>
+  <TSA_WD_SubType_Production>生产镇</TSA_WD_SubType_Production>
+  <TSA_WD_SubType_Slavery>奴隶镇</TSA_WD_SubType_Slavery>
+  <TSA_WD_SubType_Fortress>要塞</TSA_WD_SubType_Fortress>
+  <TSA_WD_SubType_Generic>定居点</TSA_WD_SubType_Generic>
+
+  <TSA_WD_Inspect_Settlement>{0} {1}（强度：{2}）</TSA_WD_Inspect_Settlement>
+  <TSA_WD_Inspect_Outpost>前哨站（强度：{0} / {1}）</TSA_WD_Inspect_Outpost>
+  <TSA_WD_Inspect_Influence>影响半径：{0} 格</TSA_WD_Inspect_Influence>
+  <TSA_WD_Inspect_EspionageCD>谍报冷却（{0} 天）</TSA_WD_Inspect_EspionageCD>
+  <TSA_WD_Inspect_GlobalCD>全局行动冷却（{0} 天）</TSA_WD_Inspect_GlobalCD>
+  <TSA_WD_Inspect_AidCD>加固冷却（{0} 天）</TSA_WD_Inspect_AidCD>
+
+  <TSA_WD_Diplo_Coalition_Label>防御联盟</TSA_WD_Diplo_Coalition_Label>
+  <TSA_WD_Diplo_Coalition_Msg>派系 {0} 已结成联盟，旨在推翻领先派系 {1}。</TSA_WD_Diplo_Coalition_Msg>
+  <TSA_WD_Diplo_Change_Label>外交变动</TSA_WD_Diplo_Change_Label>
+  <TSA_WD_Diplo_Flavor_War>{0} 和 {1} 已经开战。</TSA_WD_Diplo_Flavor_War>
+  <TSA_WD_Diplo_Flavor_Ally>{0} 和 {1} 现已结为盟友。</TSA_WD_Diplo_Flavor_Ally>
+  <TSA_WD_Diplo_Flavor_Peace>{0} 和 {1} 已经签署了和平条约。</TSA_WD_Diplo_Flavor_Peace>
+
+  <TSA_WD_Dis_GizmoLabel>散布虚假信息</TSA_WD_Dis_GizmoLabel>
+  <TSA_WD_Dis_GizmoDesc>使用你的小人 {0}（社交：{1}）发起一场虚假信息战。\n\n成功概率计算：\n  基础：{2}\n  技能：+{3}\n  等级：-{4}\n  健康：x{5}\n--------------------------\n  总成功率：{6}\n\n被发现将导致 -30 派系关系。</TSA_WD_Dis_GizmoDesc>
+  <TSA_WD_Dis_DisabledAlert>附近的目标处于高度谍报警戒状态。</TSA_WD_Dis_DisabledAlert>
+  <TSA_WD_Dis_MenuOption>{0}（{1}）- {2} 成功率</TSA_WD_Dis_MenuOption>
+  <TSA_WD_Dis_LetterCollapsedLabel>定居点崩溃！</TSA_WD_Dis_LetterCollapsedLabel>
+  <TSA_WD_Dis_LetterCollapsedText>{0} 发起的虚假信息攻势非常有效，{1} 已在混乱中解体。</TSA_WD_Dis_LetterCollapsedText>
+  <TSA_WD_Dis_LetterSuccessLabel>虚假信息成功</TSA_WD_Dis_LetterSuccessLabel>
+  <TSA_WD_Dis_LetterSuccessText>{0} 通过制造谣言和不和，削弱了 {1} 的强度，使其降低了 {2}。</TSA_WD_Dis_LetterSuccessText>
+  <TSA_WD_Dis_LetterFailedLabel>虚假信息失败</TSA_WD_Dis_LetterFailedLabel>
+  <TSA_WD_Dis_LetterFailedTextBase>{0} 未能在 {1} 挑起不和。 </TSA_WD_Dis_LetterFailedTextBase>
+  <TSA_WD_Dis_FailureSilvertongue>他们在与线人会面时险些被捕，但凭借其高超的社交技巧摆脱了怀疑并成功潜逃。</TSA_WD_Dis_FailureSilvertongue>
+  <TSA_WD_Dis_FailureClean>当地人对谣言不以为意，但你的间谍在当局被惊动前成功撤离。</TSA_WD_Dis_FailureClean>
+  <TSA_WD_Dis_FailureFightback>谣言被追溯到了他们身上，守卫试图实施逮捕。他们以惊人的凶猛程度进行反击，虽身负重伤，但免于被处决。</TSA_WD_Dis_FailureFightback>
+  <TSA_WD_Dis_FailureSpotted>他们被确认为煽动者，在逃离城市时受伤。</TSA_WD_Dis_FailureSpotted>
+  <TSA_WD_Dis_FailureExecuted>他们在传播国家机密时被抓获，并因间谍罪被处决。</TSA_WD_Dis_FailureExecuted>
+  <TSA_WD_Dis_LogDestroyed>虚假信息：已被摧毁（{0} -> 0）</TSA_WD_Dis_LogDestroyed>
+  <TSA_WD_Dis_LogSuccess>虚假信息：成功（{0} -> {1}）</TSA_WD_Dis_LogSuccess>
+  <TSA_WD_Dis_LogMain>虚假信息：{0}</TSA_WD_Dis_LogMain>
+  <TSA_WD_Dis_LogClean>失败（安全撤离）</TSA_WD_Dis_LogClean>
+  <TSA_WD_Dis_LogInjured>失败（被发现/受伤）</TSA_WD_Dis_LogInjured>
+  <TSA_WD_Dis_LogKilled>失败（被杀）</TSA_WD_Dis_LogKilled>
+
+  <TSA_WD_Fort_GizmoLabel>加固</TSA_WD_Fort_GizmoLabel>
+  <TSA_WD_Fort_GizmoDesc>尝试让你的小人 {0}（制作：{1}）去加固该定居点。\n\n成功率：{2}\n成功后将增加防御强度。</TSA_WD_Fort_GizmoDesc>
+  <TSA_WD_Fort_DisabledAlert>附近的定居点近期已经加固过了。</TSA_WD_Fort_DisabledAlert>
+  <TSA_WD_Fort_MenuOption>{0} - {1} 成功率</TSA_WD_Fort_MenuOption>
+  <TSA_WD_Fort_LetterSuccessLabel>加固成功</TSA_WD_Fort_LetterSuccessLabel>
+  <TSA_WD_Fort_LetterSuccessText>{0} 成功协助了 {1}。基础设施得到了有效改善。强度增加了 {2}。</TSA_WD_Fort_LetterSuccessText>
+  <TSA_WD_Fort_LetterFailedLabel>加固失败</TSA_WD_Fort_LetterFailedLabel>
+  <TSA_WD_Fort_LetterFailedText>{0} 无法显著改善 {1} 的防御设施。</TSA_WD_Fort_LetterFailedText>
+  <TSA_WD_Fort_LogSuccess>加固：成功（{0} -> {1}）</TSA_WD_Fort_LogSuccess>
+  <TSA_WD_Fort_LogFailed>加固：失败</TSA_WD_Fort_LogFailed>
+
+  <TSA_WD_Sab_GizmoLabel>破坏</TSA_WD_Sab_GizmoLabel>
+  <TSA_WD_Sab_GizmoDesc>让你的小人 {0}（制作：{1}）发起一场破坏任务。\n\n总成功率：{2}\n被发现将导致 -30 派系关系。</TSA_WD_Sab_GizmoDesc>
+  <TSA_WD_Sab_DisabledAlert>附近所有目标都处于高度戒备状态。</TSA_WD_Sab_DisabledAlert>
+  <TSA_WD_Sab_MenuOption>{0}（{1}）- {2} 成功率</TSA_WD_Sab_MenuOption>
+  <TSA_WD_Sab_LetterObliteratedLabel>定居点遭到破坏！</TSA_WD_Sab_LetterObliteratedLabel>
+  <TSA_WD_Sab_LetterObliteratedText>{0} 彻底摧毁了 {1}。</TSA_WD_Sab_LetterObliteratedText>
+  <TSA_WD_Sab_LetterSuccessLabel>破坏成功</TSA_WD_Sab_LetterSuccessLabel>
+  <TSA_WD_Sab_LetterSuccessText>{0} 削弱了 {1} 的强度，使其降低了 {2}。</TSA_WD_Sab_LetterSuccessText>
+  <TSA_WD_Sab_LetterFailedLabel>破坏失败</TSA_WD_Sab_LetterFailedLabel>
+  <TSA_WD_Sab_LetterFailedTextBase>{0} 未能在 {1} 完成任务。 </TSA_WD_Sab_LetterFailedTextBase>
+  <TSA_WD_Sab_FailureSilvertongue>他们险些被捕，但凭借其出色的社交技巧摆脱了冲突并顺利脱身。</TSA_WD_Sab_FailureSilvertongue>
+  <TSA_WD_Sab_FailureClean>他们在被发现前成功躲入阴影中撤离。</TSA_WD_Sab_FailureClean>
+  <TSA_WD_Sab_FailureFightback>他们被捕并被判处死刑，但凭借惊人的技能进行了反击，身负数伤得以生还。</TSA_WD_Sab_FailureFightback>
+  <TSA_WD_Sab_FailureSpotted>他们在逃离现场时被守卫发现并击伤。</TSA_WD_Sab_FailureSpotted>
+  <TSA_WD_Sab_FailureExecuted>他们当场被抓获并被立即处决。</TSA_WD_Sab_FailureExecuted>
+  <TSA_WD_Sab_LogDestroyed>破坏：已被摧毁（{0} -> 0）</TSA_WD_Sab_LogDestroyed>
+  <TSA_WD_Sab_LogSuccess>破坏：成功（{0} -> {1}）</TSA_WD_Sab_LogSuccess>
+  <TSA_WD_Sab_LogMain>破坏：{0}</TSA_WD_Sab_LogMain>
+  <TSA_WD_Sab_LogClean>失败（安全撤离）</TSA_WD_Sab_LogClean>
+  <TSA_WD_Sab_LogInjured>失败（受伤）</TSA_WD_Sab_LogInjured>
+
+  <TSA_WD_Diplo_Header>外交</TSA_WD_Diplo_Header>
+  <TSA_WD_Diplo_RandomEnable>启用随机盟约变动</TSA_WD_Diplo_RandomEnable>
+  <TSA_WD_Diplo_RandomChance>随机变动概率</TSA_WD_Diplo_RandomChance>
+  <TSA_WD_Diplo_RevoltChance>每日起义概率</TSA_WD_Diplo_RevoltChance>
+  <TSA_WD_Diplo_AntiLeader>启用反强权联盟</TSA_WD_Diplo_AntiLeader>
+  <TSA_WD_Diplo_LeaderHandicap>启用主导派系限制 (减益)</TSA_WD_Diplo_LeaderHandicap>
+  <TSA_WD_Diplo_UnderdogBuff>启用弱者动员 (增益)</TSA_WD_Diplo_UnderdogBuff>
+  <TSA_WD_Diplo_Reset>重置本页为默认值</TSA_WD_Diplo_Reset>
+  <TSA_WD_Diplo_RandomEnableTooltip>开启后，NPC 派系会偶尔独立改变彼此的关系（和平、战争、结盟）。</TSA_WD_Diplo_RandomEnableTooltip>
+  <TSA_WD_Diplo_RandomChanceTooltip>每日两个派系之间发生随机外交事件的概率。</TSA_WD_Diplo_RandomChanceTooltip>
+  <TSA_WD_Diplo_RevoltChanceTooltip>被击败的派系每日发起起义并夺取拥有最多定居点派系名下随机定居点的概率。</TSA_WD_Diplo_RevoltChanceTooltip>
+  <TSA_WD_Diplo_AntiLeaderTooltip>小派系可能会结成防御联盟并向全球最强派系宣战，以恢复平衡。</TSA_WD_Diplo_AntiLeaderTooltip>
+  <TSA_WD_Diplo_LeaderHandicapTooltip>最强派系会遭受内讧和后勤问题，从而增加意外事件的发生频率。</TSA_WD_Diplo_LeaderHandicapTooltip>
+  <TSA_WD_Diplo_UnderdogBuffTooltip>最弱派系变得小巧灵活，在有限时间内获得更快的成长速度。</TSA_WD_Diplo_UnderdogBuffTooltip>
+
+  <TSA_WD_Dis_HeaderWeights>虚假信息设置：基础结果权重</TSA_WD_Dis_HeaderWeights>
+  <TSA_WD_Dis_HeaderModifiers>成功率修正系数</TSA_WD_Dis_HeaderModifiers>
+  <TSA_WD_Dis_HeaderSaves>救赎判定</TSA_WD_Dis_HeaderSaves>
+  <TSA_WD_Dis_HeaderOutcome>成功效果与冷却时间</TSA_WD_Dis_HeaderOutcome>
+  <TSA_WD_Dis_HeaderSimulation>具体案例（针对 T2 城镇，健康的小人）</TSA_WD_Dis_HeaderSimulation>
+  <TSA_WD_Dis_WeightSuccess>成功权重</TSA_WD_Dis_WeightSuccess>
+  <TSA_WD_Dis_WeightClean>失败权重（安全撤离）</TSA_WD_Dis_WeightClean>
+  <TSA_WD_Dis_WeightInjured>失败权重（受伤）</TSA_WD_Dis_WeightInjured>
+  <TSA_WD_Dis_WeightFatal>失败权重（死亡）</TSA_WD_Dis_WeightFatal>
+  <TSA_WD_Dis_SkillBonus>每级社交提供的成功权重加成</TSA_WD_Dis_SkillBonus>
+  <TSA_WD_Dis_TierPenalty>每级定居点等级的成功权重惩罚</TSA_WD_Dis_TierPenalty>
+  <TSA_WD_Dis_HealthImpact>健康状况对成功率的影响</TSA_WD_Dis_HealthImpact>
+  <TSA_WD_Dis_SocialSave>每级社交提供的巧舌如簧加成</TSA_WD_Dis_SocialSave>
+  <TSA_WD_Dis_CombatSave>每级战斗等级提供的杀出重围加成</TSA_WD_Dis_CombatSave>
+  <TSA_WD_Dis_BaseReduc>基础强度削减点数</TSA_WD_Dis_BaseReduc>
+  <TSA_WD_Dis_SkillReduc>每级社交附加的强度削减点数</TSA_WD_Dis_SkillReduc>
+  <TSA_WD_Dis_Cooldown>尝试虚假信息后的冷却时间</TSA_WD_Dis_Cooldown>
+  <TSA_WD_Dis_Reset>重置本页为默认值</TSA_WD_Dis_Reset>
+  <TSA_WD_Dis_WeightSuccessTooltip>在应用修正前，虚假信息尝试成功的基础权重。</TSA_WD_Dis_WeightSuccessTooltip>
+  <TSA_WD_Dis_WeightCleanTooltip>安全失败的相对频率。</TSA_WD_Dis_WeightCleanTooltip>
+  <TSA_WD_Dis_WeightInjuredTooltip>失败时受伤的相对频率。</TSA_WD_Dis_WeightInjuredTooltip>
+  <TSA_WD_Dis_WeightFatalTooltip>失败时被处决的相对频率。</TSA_WD_Dis_WeightFatalTooltip>
+  <TSA_WD_Dis_SkillBonusTooltip>根据社交等级为成功结果增加固定权重值。</TSA_WD_Dis_SkillBonusTooltip>
+  <TSA_WD_Dis_TierPenaltyTooltip>根据目标等级从成功权重中减去固定数值。</TSA_WD_Dis_TierPenaltyTooltip>
+  <TSA_WD_Dis_HealthImpactTooltip>健康度对成功的影响。设为 100% 时，50% 健康的小人其成功权重也将减半。</TSA_WD_Dis_HealthImpactTooltip>
+  <TSA_WD_Dis_SocialSaveTooltip>尝试失败时，每级社交技能将“受伤”转化为“安全撤离”的百分比概率。</TSA_WD_Dis_SocialSaveTooltip>
+  <TSA_WD_Dis_CombatSaveTooltip>尝试失败时，每级射击/格斗技能（取最高值）将“处决”转化为“受伤”的百分比概率。</TSA_WD_Dis_CombatSaveTooltip>
+  <TSA_WD_Dis_BaseReducTooltip>成功后从定居点扣除的强度值。</TSA_WD_Dis_BaseReducTooltip>
+  <TSA_WD_Dis_SkillReducTooltip>基于社交技能提供的额外伤害。</TSA_WD_Dis_SkillReducTooltip>
+  <TSA_WD_Dis_CooldownTooltip>尝试后目标定居点保持高度戒备的持续时间。</TSA_WD_Dis_CooldownTooltip>
+  <TSA_WD_Dis_SimLvl0>所有相关技能 0 级</TSA_WD_Dis_SimLvl0>
+  <TSA_WD_Dis_SimLvl10>所有相关技能 10 级</TSA_WD_Dis_SimLvl10>
+  <TSA_WD_Dis_SimLvl20>所有相关技能 20 级</TSA_WD_Dis_SimLvl20>
+  <TSA_WD_Dis_SimResult>{0} | 成功: {1} | 安全失败: {2} | 受伤: {3} | 死亡: {4}</TSA_WD_Dis_SimResult>
+
+  <TSA_WD_Growth_HeaderGrowth>常规成长设置</TSA_WD_Growth_HeaderGrowth>
+  <TSA_WD_Growth_HeaderIncidents>事件严重程度</TSA_WD_Growth_HeaderIncidents>
+  <TSA_WD_Growth_HeaderExpansion>扩张与局部密度限制</TSA_WD_Growth_HeaderExpansion>
+  <TSA_WD_Growth_MaxSettlements>全球定居点上限</TSA_WD_Growth_MaxSettlements>
+  <TSA_WD_Growth_BaseGrowth>成长强度增益</TSA_WD_Growth_BaseGrowth>
+  <TSA_WD_Growth_Scaling>基于定居点规模的缩放系数</TSA_WD_Growth_Scaling>
+  <TSA_WD_Growth_MinorInc>小型事件强度损失</TSA_WD_Growth_MinorInc>
+  <TSA_WD_Growth_MajorInc>重大事件强度损失</TSA_WD_Growth_MajorInc>
+  <TSA_WD_Growth_MinRadius>最小扩张半径</TSA_WD_Growth_MinRadius>
+  <TSA_WD_Growth_MaxRadius>最大扩张半径</TSA_WD_Growth_MaxRadius>
+  <TSA_WD_Growth_ExpandChance>扩张成功率</TSA_WD_Growth_ExpandChance>
+  <TSA_WD_Growth_LocalMaxT1>局部 T1 前哨站上限</TSA_WD_Growth_LocalMaxT1>
+  <TSA_WD_Growth_LocalMaxT2>局部 T2 村庄上限</TSA_WD_Growth_LocalMaxT2>
+  <TSA_WD_Growth_LocalMaxT3>局部 T3 城镇上限</TSA_WD_Growth_LocalMaxT3>
+  <TSA_WD_Growth_Reset>重置本页为默认值</TSA_WD_Growth_Reset>
+  <TSA_WD_Growth_MaxSettlementsTooltip>扩张被锁定前全球允许的最大定居点总数。</TSA_WD_Growth_MaxSettlementsTooltip>
+  <TSA_WD_Growth_BaseGrowthTooltip>每次成长行动获得的基础强度值。</TSA_WD_Growth_BaseGrowthTooltip>
+  <TSA_WD_Growth_ScalingTooltip>设为 100% 时，小型定居点成长更快，大型定居点成长更慢，以模拟物流成本。</TSA_WD_Growth_ScalingTooltip>
+  <TSA_WD_Growth_MinorIncTooltip>发生小型内部挫败时损失的强度点数。</TSA_WD_Growth_MinorIncTooltip>
+  <TSA_WD_Growth_MajorIncTooltip>发生重大灾难时损失的强度点数。</TSA_WD_Growth_MajorIncTooltip>
+  <TSA_WD_Growth_MinRadiusTooltip>寻找新扩张地点所需的最小地块距离。</TSA_WD_Growth_MinRadiusTooltip>
+  <TSA_WD_Growth_MaxRadiusTooltip>允许扩张的最大地块距离，同时也作为计算局部密度的范围。</TSA_WD_Growth_MaxRadiusTooltip>
+  <TSA_WD_Growth_ExpandChanceTooltip>强度全满的定居点成功建立新定居点的概率。</TSA_WD_Growth_ExpandChanceTooltip>
+  <TSA_WD_Growth_LocalMaxT1Tooltip>最大扩张半径内允许的 T1 定居点数量上限，达到上限后将阻止进一步扩张。</TSA_WD_Growth_LocalMaxT1Tooltip>
+  <TSA_WD_Growth_LocalMaxT2Tooltip>最大扩张半径内允许的 T2 定居点数量上限。</TSA_WD_Growth_LocalMaxT2Tooltip>
+  <TSA_WD_Growth_LocalMaxT3Tooltip>最大扩张半径内允许的 T3 定居点数量上限。</TSA_WD_Growth_LocalMaxT3Tooltip>
+
+  <TSA_WD_Category>世界主宰</TSA_WD_Category>
+  <TSA_WD_HeaderGeneral>常规设置</TSA_WD_HeaderGeneral>
+  <TSA_WD_HeaderWorldActions>世界行动</TSA_WD_HeaderWorldActions>
+  <TSA_WD_HeaderPlayerInteractions>玩家手动交互</TSA_WD_HeaderPlayerInteractions>
+  <TSA_WD_HeaderMisc>杂项</TSA_WD_HeaderMisc>
+  <TSA_WD_HeaderSystem>系统行动</TSA_WD_HeaderSystem>
+  <TSA_WD_BtnDailyActions>世界行动</TSA_WD_BtnDailyActions>
+  <TSA_WD_BtnRaidMult>袭击点数倍率</TSA_WD_BtnRaidMult>
+  <TSA_WD_BtnDiplomacy>外交</TSA_WD_BtnDiplomacy>
+  <TSA_WD_BtnWorldRaids>世界地图袭击</TSA_WD_BtnWorldRaids>
+  <TSA_WD_BtnGrowthExpand>成长与扩张</TSA_WD_BtnGrowthExpand>
+  <TSA_WD_BtnSabotage>破坏</TSA_WD_BtnSabotage>
+  <TSA_WD_BtnDisinformation>虚假信息</TSA_WD_BtnDisinformation>
+  <TSA_WD_BtnNotifications>通知</TSA_WD_BtnNotifications>
+  <TSA_WD_BtnResetAll>重置所有设置</TSA_WD_BtnResetAll>
+  <TSA_WD_ConfirmResetAll>你确定要将所有模组设置重置为默认值吗？此操作无法撤销。</TSA_WD_ConfirmResetAll>
+
+  <TSA_WD_Notify_HeaderEvents>世界事件通知</TSA_WD_Notify_HeaderEvents>
+  <TSA_WD_Notify_NewSettlement>当有新定居点在殖民地影响范围内建立时通知</TSA_WD_Notify_NewSettlement>
+  <TSA_WD_Notify_SettlementRaided>当影响范围内的定居点遭到袭击时通知</TSA_WD_Notify_SettlementRaided>
+  <TSA_WD_Notify_OutpostDestroyed>当玩家前哨站被摧毁时通知</TSA_WD_Notify_OutpostDestroyed>
+  <TSA_WD_Notify_ThreatLevel>通知当前威胁等级</TSA_WD_Notify_ThreatLevel>
+  <TSA_WD_Notify_DiplomaticChange>通知外交变动</TSA_WD_Notify_DiplomaticChange>
+  <TSA_WD_Notify_BuffNerf>通知增益/减益状态变化</TSA_WD_Notify_BuffNerf>
+  <TSA_WD_Notify_Reset>重置本页为默认值</TSA_WD_Notify_Reset>
+  <TSA_WD_Notify_NewSettlementTooltip>每当有派系在你的影响范围边界内建立新基地时触发通知。</TSA_WD_Notify_NewSettlementTooltip>
+  <TSA_WD_Notify_SettlementRaidedTooltip>当你的影响范围内发生成功的 NPC 对 NPC 袭击时触发通知。</TSA_WD_Notify_SettlementRaidedTooltip>
+  <TSA_WD_Notify_OutpostDestroyedTooltip>如果在模拟世界袭击中失去了玩家控制的前哨站，发送紧急警报。</TSA_WD_Notify_OutpostDestroyedTooltip>
+  <TSA_WD_Notify_ThreatLevelTooltip>启用关于影响范围内敌人定居点造成的全球威胁水平的定期后台更新。</TSA_WD_Notify_ThreatLevelTooltip>
+  <TSA_WD_Notify_DiplomaticChangeTooltip>每当 NPC 派系改变外交关系（开战、讲和等）时获取通知。</TSA_WD_Notify_DiplomaticChangeTooltip>
+  <TSA_WD_Notify_BuffNerfTooltip>每当 NPC 派系获得临时增益或减益时获取通知。</TSA_WD_Notify_BuffNerfTooltip>
+
+  <TSA_WD_Threat_HeaderRadius>袭击点数倍率 (半径)</TSA_WD_Threat_HeaderRadius>
+  <TSA_WD_Threat_HeaderCalc>袭击点数计算</TSA_WD_Threat_HeaderCalc>
+  <TS_WD_Threat_DistanceMods>距离修正</TS_WD_Threat_DistanceMods>
+  <TS_WD_Threat_TierMods>等级修正</TS_WD_Threat_TierMods>
+  <TS_WD_Threat_InfBase>初始半径 (格)</TS_WD_Threat_InfBase>
+  <TS_WD_Threat_InfWealth>每 5000 财富增加半径 (格)</TS_WD_Threat_InfWealth>
+  <TS_WD_Threat_InfTime>每天增加半径 (格)</TS_WD_Threat_InfTime>
+  <TS_WD_Threat_MinPoints>最小袭击点数</TS_WD_Threat_MinPoints>
+  <TS_WD_Threat_MaxPoints>最大袭击点数</TS_WD_Threat_MaxPoints>
+  <TS_WD_Threat_MinMult>最小点数倍率</TS_WD_Threat_MinMult>
+  <TS_WD_Threat_MaxMult>最大点数倍率</TS_WD_Threat_MaxMult>
+  <TS_WD_Threat_Dist50>位于最大影响半径 50% 以内</TS_WD_Threat_Dist50>
+  <TS_WD_Threat_Dist75>位于最大影响半径 51-75% 以内</TS_WD_Threat_Dist75>
+  <TS_WD_Threat_Dist100>位于最大影响半径 76%-100% 以内</TS_WD_Threat_Dist100>
+  <TS_WD_Threat_Tier1>T1 定居点的袭击点数倍率</TS_WD_Threat_Tier1>
+  <TS_WD_Threat_Tier2>T2 定居点的袭击点数倍率</TS_WD_Threat_Tier2>
+  <TS_WD_Threat_Tier3>T3 定居点的袭击点数倍率</TS_WD_Threat_Tier3>
+  <TS_WD_Threat_Reset>重置本页为默认值</TS_WD_Threat_Reset>
+  <TS_WD_Threat_InfBaseTooltip>殖民地周围的初始影响半径。该半径内的敌方定居点将增加袭击点数倍率。</TS_WD_Threat_InfBaseTooltip>
+  <TS_WD_Threat_InfWealthTooltip>随着你变得富有，影响半径的扩张速度。</TS_WD_Threat_InfWealthTooltip>
+  <TS_WD_Threat_InfTimeTooltip>无论财富多少，影响半径随时间自然扩张的速度。</TS_WD_Threat_InfTimeTooltip>
+  <TS_WD_Threat_MinPointsTooltip>袭击点数的绝对下限。注意：设置过低可能导致无法生成任何敌人！</TS_WD_Threat_MinPointsTooltip>
+  <TS_WD_Threat_MaxPointsTooltip>袭击点数的绝对上限。防止超大型派系发送破坏游戏的超大规模袭击。</TS_WD_Threat_MaxPointsTooltip>
+  <TS_WD_Threat_MinMultTooltip>应用于派系的最小点数倍率，即使他们在玩家附近没有任何存在感。</TS_WD_Threat_MinMultTooltip>
+  <TS_WD_Threat_MaxMultTooltip>派系实力的最大允许倍率。限制了世界规模对单次袭击强度的影响上限。</TS_WD_Threat_MaxMultTooltip>
+  <TS_WD_Threat_Dist50Tooltip>位于影响半径前半部分（50%以内）的敌人基地所提供的袭击点数倍率。</TS_WD_Threat_Dist50Tooltip>
+  <TS_WD_Threat_Dist75Tooltip>位于影响半径中等范围（51-75%）的敌人基地所提供的袭击点数倍率。</TS_WD_Threat_Dist75Tooltip>
+  <TS_WD_Threat_Dist100Tooltip>位于影响半径边缘区域（76-100%）的敌人基地所提供的袭击点数倍率。</TS_WD_Threat_Dist100Tooltip>
+  <TS_WD_Threat_Tier1Tooltip>T1 村庄（伐木、采矿、耕作）的袭击点数倍率。</TS_WD_Threat_Tier1Tooltip>
+  <TS_WD_Threat_Tier2Tooltip>T2 城镇（生产、奴役）的袭击点数倍率。</TS_WD_Threat_Tier2Tooltip>
+  <TS_WD_Threat_Tier3Tooltip>T3 城市/要塞的袭击点数倍率。</TS_WD_Threat_Tier3Tooltip>
+
+  <TSA_WD_Raid_HeaderPlayer>玩家殖民地世界袭击</TSA_WD_Raid_HeaderPlayer>
+  <TSA_WD_Raid_HeaderSim>世界袭击模拟参数</TSA_WD_Raid_HeaderSim>
+  <TSA_WD_Raid_HeaderOutcome>战斗结果分级 (自动平衡)</TSA_WD_Raid_HeaderOutcome>
+  <TSA_WD_Raid_AllowPlayer>允许玩家殖民地被袭击</TSA_WD_Raid_AllowPlayer>
+  <TSA_WD_Raid_CdPlayer>玩家袭击冷却时间</TSA_WD_Raid_CdPlayer>
+  <TSA_WD_Raid_CostPct>攻击方强度消耗</TSA_WD_Raid_CostPct>
+  <TSA_WD_Raid_DisabledPlayer>玩家袭击目前已禁用。</TSA_WD_Raid_DisabledPlayer>
+  <TSA_WD_Raid_AllowOutpost>允许玩家前哨站被袭击</TSA_WD_Raid_AllowOutpost>
+  <TSA_WD_Raid_TargetRad>目标搜索范围</TSA_WD_Raid_TargetRad>
+  <TSA_WD_Raid_AttReinfRad>攻击方增援半径</TSA_WD_Raid_AttReinfRad>
+  <TSA_WD_Raid_DefReinfRad>防御方增援半径</TSA_WD_Raid_DefReinfRad>
+  <TSA_WD_Raid_MinRatio>最小强度比</TSA_WD_Raid_MinRatio>
+  <TSA_WD_Raid_RazeChance>摧毁概率</TSA_WD_Raid_RazeChance>
+  <TSA_WD_Raid_Reset>重置本页为默认值</TSA_WD_Raid_Reset>
+  <TSA_WD_Raid_Col0>相对强度</TSA_WD_Raid_Col0>
+  <TSA_WD_Raid_Col1>胜率</TSA_WD_Raid_Col1>
+  <TSA_WD_Raid_Col2>攻击方获胜</TSA_WD_Raid_Col2>
+  <TSA_WD_Raid_Col3>防御方失败</TSA_WD_Raid_Col3>
+  <TSA_WD_Raid_Col4>攻击方失败</TSA_WD_Raid_Col4>
+  <TSA_WD_Raid_Col5>防御方获胜</TSA_WD_Raid_Col5>
+  <TSA_WD_Raid_AllowPlayerTooltip>开启后，搜索范围内的 NPC 定居点将对你的殖民地地图发动实际袭击。</TSA_WD_Raid_AllowPlayerTooltip>
+  <TSA_WD_Raid_CdPlayerTooltip>你的殖民地被世界袭击瞄准后，必须经过多少天才能再次被瞄准。</TSA_WD_Raid_CdPlayerTooltip>
+  <TSA_WD_Raid_CostPctTooltip>NPC 派系对你发动攻势时所损失的强度百分比。</TSA_WD_Raid_CostPctTooltip>
+  <TSA_WD_Raid_AllowOutpostTooltip>开启后，NPC 可以对你范围内控制的前哨站发动模拟袭击。</TSA_WD_Raid_AllowOutpostTooltip>
+  <TSA_WD_Raid_TargetRadTooltip>定居点寻找目标的最大距离。</TSA_WD_Raid_TargetRadTooltip>
+  <TSA_WD_Raid_AttReinfRadTooltip>发起攻击时，从相邻盟友定居点获取支援的半径。</TSA_WD_Raid_AttReinfRadTooltip>
+  <TSA_WD_Raid_DefReinfRadTooltip>防御发生时，盟友定居点贡献强度的半径。</TSA_WD_Raid_DefReinfRadTooltip>
+  <TSA_WD_Raid_MinRatioTooltip>NPC 认为袭击可行所需的最小强度优势比。</TSA_WD_Raid_MinRatioTooltip>
+  <TSA_WD_Raid_RazeChanceTooltip>袭击成功后，彻底摧毁目标定居点而非仅仅掠夺的概率。</TSA_WD_Raid_RazeChanceTooltip>
+  <TSA_WD_Raid_Col0Tip>攻击方强度与防御方强度的比例。</TSA_WD_Raid_Col0Tip>
+  <TSA_WD_Raid_Col1Tip>该场景下攻击方获胜的概率。</TSA_WD_Raid_Col1Tip>
+  <TSA_WD_Raid_Col2Tip>攻击方在获胜时损失的强度。</TSA_WD_Raid_Col2Tip>
+  <TSA_WD_Raid_Col3Tip>防御方在失败时损失的强度。</TSA_WD_Raid_Col3Tip>
+  <TSA_WD_Raid_Col4Tip>攻击方在失败时损失的强度。</TSA_WD_Raid_Col4Tip>
+  <TSA_WD_Raid_Col5Tip>防御方在获胜（成功防守）时损失的强度。</TSA_WD_Raid_Col5Tip>
+
+  <TSA_WD_Sab_HeaderWeights>破坏设置：基础结果权重</TSA_WD_Sab_HeaderWeights>
+  <TSA_WD_Sab_HeaderModifiers>成功率修正系数</TSA_WD_Sab_HeaderModifiers>
+  <TSA_WD_Sab_HeaderSaves>救赎判定（基于技能的补救）</TSA_WD_Sab_HeaderSaves>
+  <TSA_WD_Sab_HeaderOutcome>成功效果与冷却时间</TSA_WD_Sab_HeaderOutcome>
+  <TSA_WD_Sab_HeaderSimulation>模拟：针对 T2 城镇（健康的小人）</TSA_WD_Sab_HeaderSimulation>
+  <TSA_WD_Sab_WeightSuccess>成功权重</TSA_WD_Sab_WeightSuccess>
+  <TSA_WD_Sab_WeightClean>失败权重（安全脱身）</TSA_WD_Sab_WeightClean>
+  <TSA_WD_Sab_WeightInjured>失败权重（受伤）</TSA_WD_Sab_WeightInjured>
+  <TSA_WD_Sab_WeightFatal>失败权重（死亡）</TSA_WD_Sab_WeightFatal>
+  <TSA_WD_Sab_SkillBonus>每级制作提供的成功权重加成</TSA_WD_Sab_SkillBonus>
+  <TSA_WD_Sab_TierPenalty>每级定居点等级的成功权重惩罚</TSA_WD_Sab_TierPenalty>
+  <TSA_WD_Sab_HealthImpact>健康状况对成功率的影响</TSA_WD_Sab_HealthImpact>
+  <TSA_WD_Sab_SocialSave>每级社交提供的巧舌如簧加成</TSA_WD_Sab_SocialSave>
+  <TSA_WD_Sab_CombatSave>每级战斗等级提供的杀出重围加成</TSA_WD_Sab_CombatSave>
+  <TSA_WD_Sab_BaseReduc>基础强度削减点数</TSA_WD_Sab_BaseReduc>
+  <TSA_WD_Sab_SkillReduc>每级制作附加的强度削减点数</TSA_WD_Sab_SkillReduc>
+  <TSA_WD_Sab_Cooldown>尝试破坏后的冷却时间</TSA_WD_Sab_Cooldown>
+  <TSA_WD_Sab_Reset>重置本页为默认值</TSA_WD_Sab_Reset>
+  <TSA_WD_Sab_WeightSuccessTooltip>在应用修正前，破坏尝试成功的基础概率权重。</TSA_WD_Sab_WeightSuccessTooltip>
+  <TSA_WD_Sab_WeightCleanTooltip>尝试失败但小人未被发现并安全撤离的概率。</TSA_WD_Sab_WeightCleanTooltip>
+  <TSA_WD_Sab_WeightInjuredTooltip>尝试失败且小人在逃离时受伤的概率。</TSA_WD_Sab_WeightInjuredTooltip>
+  <TSA_WD_Sab_WeightFatalTooltip>尝试失败且小人被杀死的概率。</TSA_WD_Sab_WeightFatalTooltip>
+  <TSA_WD_Sab_SkillBonusTooltip>根据制作等级为成功结果增加固定权重值。</TSA_WD_Sab_SkillBonusTooltip>
+  <TSA_WD_Sab_TierPenaltyTooltip>根据目标等级从成功权重中减去固定数值。</TSA_WD_Sab_TierPenaltyTooltip>
+  <TSA_WD_Sab_HealthImpactTooltip>小人健康度对成功的影响。设为 100% 时，50% 健康的小人其成功权重也将减半。</TSA_WD_Sab_HealthImpactTooltip>
+  <TSA_WD_Sab_SocialSaveTooltip>每级社交技能将“受伤”结果转化为“安全脱身”的百分比概率。</TSA_WD_Sab_SocialSaveTooltip>
+  <TSA_WD_Sab_CombatSaveTooltip>每级战斗等级（射击/格斗）将“死亡”结果转化为“受伤”的百分比概率。</TSA_WD_Sab_CombatSaveTooltip>
+  <TSA_WD_Sab_BaseReducTooltip>成功后从目标定居点移除的基础强度值。</TSA_WD_Sab_BaseReducTooltip>
+  <TSA_WD_Sab_SkillReducTooltip>基于制作技能提供的额外强度伤害。</TSA_WD_Sab_SkillReducTooltip>
+  <TSA_WD_Sab_CooldownTooltip>尝试后目标定居点保持高度戒备的天数，期间无法再次破坏。</TSA_WD_Sab_CooldownTooltip>
+  <TSA_WD_Sab_SimLvl0>所有相关技能 0 级</TSA_WD_Sab_SimLvl0>
+  <TSA_WD_Sab_SimLvl10>所有相关技能 10 级</TSA_WD_Sab_SimLvl10>
+  <TSA_WD_Sab_SimLvl20>所有相关技能 20 级</TSA_WD_Sab_SimLvl20>
+  <TSA_WD_Sab_SimResult>{0} | 成功: {1} | 安全失败: {2} | 受伤: {3} | 死亡: {4}</TSA_WD_Sab_SimResult>
+
+  <TSA_WD_Daily_HeaderTiers>各级定居点的每日行动数</TSA_WD_Daily_HeaderTiers>
+  <TSA_WD_Daily_HeaderWeights>行动概率 (权重)</TSA_WD_Daily_HeaderWeights>
+  <TSA_WD_Daily_HeaderCooldowns>行动后的冷却时间 (天)</TSA_WD_Daily_HeaderCooldowns>
+  <TSA_WD_Daily_Tier1Tip>每个 T1 定居点每天增加的行动次数。</TSA_WD_Daily_Tier1Tip>
+  <TSA_WD_Daily_Tier2Tip>每个 T2 定居点每天增加的行动次数。</TSA_WD_Daily_Tier2Tip>
+  <TSA_WD_Daily_Tier3Tip>每个 T3 定居点每天增加的行动次数。</TSA_WD_Daily_Tier3Tip>
+  <TSA_WD_Daily_WeightGrow>成长权重</TSA_WD_Daily_WeightGrow>
+  <TSA_WD_Daily_WeightRaid>袭击权重</TSA_WD_Daily_WeightRaid>
+  <TSA_WD_Daily_WeightMinor>小型事件权重</TSA_WD_Daily_WeightMinor>
+  <TSA_WD_Daily_WeightMajor>重大事件权重</TSA_WD_Daily_WeightMajor>
+  <TSA_WD_Daily_WeightGrowTip>定居点选择增加强度点数的概率。</TSA_WD_Daily_WeightGrowTip>
+  <TSA_WD_Daily_WeightRaidTip>定居点袭击附近定居点或玩家前哨站的概率。</TSA_WD_Daily_WeightRaidTip>
+  <TSA_WD_Daily_WeightMinorTip>定居点遭受小型事件的概率。</TSA_WD_Daily_WeightMinorTip>
+  <TSA_WD_Daily_WeightMajorTip>定居点遭受重大事件的概率。</TSA_WD_Daily_WeightMajorTip>
+  <TSA_WD_Daily_CdGrow>成长后冷却</TSA_WD_Daily_CdGrow>
+  <TSA_WD_Daily_CdExpand>扩张后冷却</TSA_WD_Daily_CdExpand>
+  <TSA_WD_Daily_CdRaid>袭击后冷却</TSA_WD_Daily_CdRaid>
+  <TSA_WD_Daily_CdBeingRaided>被袭击后冷却</TSA_WD_Daily_CdBeingRaided>
+  <TSA_WD_Daily_CdGrowTip>成长行动后的下一次行动间隔天数。</TSA_WD_Daily_CdGrowTip>
+  <TSA_WD_Daily_CdExpandTip>扩张行动后的下一次行动间隔天数。</TSA_WD_Daily_CdExpandTip>
+  <TSA_WD_Daily_CdRaidTip>发起袭击后的下一次行动间隔天数。</TSA_WD_Daily_CdRaidTip>
+  <TSA_WD_Daily_CdBeingRaidedTip>遭到袭击后的下一次行动间隔天数。</TSA_WD_Daily_CdBeingRaidedTip>
+  <TSA_WD_Daily_Reset>重置本页为默认值</TSA_WD_Daily_Reset>
+
+  <TSA_WD_Log_WindowTitle>行动日志 (最近 500 条)</TSA_WD_Log_WindowTitle>
+  <TSA_WD_Log_HeaderActor>定居点 A (发起者)</TSA_WD_Log_HeaderActor>
+  <TSA_WD_Log_HeaderTarget>定居点 B (目标)</TSA_WD_Log_HeaderTarget>
+  <TSA_WD_Log_HeaderAction>行动</TSA_WD_Log_HeaderAction>
+  <TSA_WD_Log_BtnDetails>详情</TSA_WD_Log_BtnDetails>
+  <TSA_WD_RaidDet_Title>详细行动概览</TSA_WD_RaidDet_Title>
+  <TSA_WD_RaidDet_HeaderCore>核心统计数据</TSA_WD_RaidDet_HeaderCore>
+  <TSA_WD_RaidDet_HeaderBreakdown>行动后强度损耗分析</TSA_WD_RaidDet_HeaderBreakdown>
+  <TSA_WD_RaidDet_PlayerAssault>针对玩家发起的突击</TSA_WD_RaidDet_PlayerAssault>
+  <TSA_WD_RaidDet_StorytellerPoints>叙事者分配点数：{0}</TSA_WD_RaidDet_StorytellerPoints>
+  <TSA_WD_RaidDet_FactionMult>派系倍率：{0}x</TSA_WD_RaidDet_FactionMult>
+  <TSA_WD_RaidDet_FinalPoints>最终袭击点数：{0} (可能应用了最小值)</TSA_WD_RaidDet_FinalPoints>
+  <TSA_WD_RaidDet_OffStr>总攻击强度：{0}</TSA_WD_RaidDet_OffStr>
+  <TSA_WD_RaidDet_DefStr>总防御强度：{0}</TSA_WD_RaidDet_DefStr>
+  <TSA_WD_RaidDet_PowerRatio>战力比：{0}x</TSA_WD_RaidDet_PowerRatio>
+  <TSA_WD_RaidDet_SuccessProb>成功概率：{0}</TSA_WD_RaidDet_SuccessProb>
+  <TSA_WD_RaidDet_Result>结果：{0}</TSA_WD_RaidDet_Result>
+  <TSA_WD_RaidDet_Aborted>袭击已中止：攻击方战力过低</TSA_WD_RaidDet_Aborted>
+  <TSA_WD_RaidDet_Victory>袭击成功</TSA_WD_RaidDet_Victory>
+  <TSA_WD_RaidDet_Defeat>袭击失败</TSA_WD_RaidDet_Defeat>
+  <TSA_WD_RaidDet_AttackerLoss>攻击方（强度 -{0}%）：</TSA_WD_RaidDet_AttackerLoss>
+  <TSA_WD_RaidDet_DefenderLoss>防守方（强度 -{0}%）：</TSA_WD_RaidDet_DefenderLoss>
+  <TSA_WD_RaidDet_TargetLabel>目标：{0}</TSA_WD_RaidDet_TargetLabel>
+
+  <TSA_WD_FacDet_Title>派系定居点概览：{0}</TSA_WD_FacDet_Title>
+  <TSA_WD_FacDet_HeaderTier>等级</TSA_WD_FacDet_HeaderTier>
+  <TSA_WD_FacDet_HeaderName>定居点名称</TSA_WD_FacDet_HeaderName>
+  <TSA_WD_FacDet_HeaderStrength>强度</TSA_WD_FacDet_HeaderStrength>
+  <TSA_WD_FacDet_BtnView>查看</TSA_WD_FacDet_BtnView>
+
+  <TSA_WD_Threat_LabelCritical>WD：致命威胁</TSA_WD_Threat_LabelCritical>
+  <TSA_WD_Threat_LabelHigh>WD：高水平威胁</TSA_WD_Threat_LabelHigh>
+  <TSA_WD_Threat_LabelMedium>WD：中等威胁</TSA_WD_Threat_LabelMedium>
+  <TSA_WD_Threat_LabelLow>WD：低水平威胁</TSA_WD_Threat_LabelLow>
+  <TSA_WD_Threat_HostileForces>敌对势力</TSA_WD_Threat_HostileForces>
+  <TSA_WD_Threat_NoHostiles>未检测到敌对派系。</TSA_WD_Threat_NoHostiles>
+  <TSA_WD_Threat_BreakdownHeader>袭击倍率分析：</TSA_WD_Threat_BreakdownHeader>
+  <TSA_WD_Threat_DescCritical>致命威胁：{0}，袭击倍率：x{1}。你正处于极度危险之中！为了生存，必须立即对他们的定居点进行破坏或摧毁！</TSA_WD_Threat_DescCritical>
+  <TSA_WD_Threat_DescHigh>最高威胁：{0}，袭击倍率：x{1}。请破坏或攻击他们附近的定居点以降低威胁！如果他们现在发起袭击，你很可能会战败！</TSA_WD_Threat_DescHigh>
+  <TSA_WD_Threat_DescMedium>最高威胁：{0}，袭击倍率：x{1}。在事态失控前，请破坏或攻击他们附近的定居点以降低威胁！</TSA_WD_Threat_DescMedium>
+  <TSA_WD_Threat_DescLow>最高威胁：{0}，袭击倍率：x{1}</TSA_WD_Threat_DescLow>
+  <TSA_WD_RaidPointsMult>袭击点数：x{0}</TSA_WD_RaidPointsMult>
+  <TSA_WD_ActionLog>行动日志</TSA_WD_ActionLog>
+  <TSA_WD_WorldStats>世界统计</TSA_WD_WorldStats>
+  <TSA_WD_RaidLabel>袭击：{0}</TSA_WD_RaidLabel>
+  <TSA_WD_ThreatBreakdownHeader>袭击倍率分析：</TSA_WD_ThreatBreakdownHeader>
+  <TSA_WD_NoHostileFactions>未检测到敌对派系。</TSA_WD_NoHostileFactions>
+  <TSA_WD_HostileForcesFallback>敌对势力</TSA_WD_HostileForcesFallback>
+  <TSA_WD_ThreatLabel_Cat3>WD：致命威胁</TSA_WD_ThreatLabel_Cat3>
+  <TSA_WD_ThreatLabel_Cat2>WD：高水平威胁</TSA_WD_ThreatLabel_Cat2>
+  <TSA_WD_ThreatLabel_Cat1>WD：中等威胁</TSA_WD_ThreatLabel_Cat1>
+  <TSA_WD_ThreatLabel_Cat0>WD：低水平威胁</TSA_WD_ThreatLabel_Cat0>
+  <TSA_WD_ThreatDesc_Cat3>致命威胁：{0}，袭击倍数：x{1}。你正处于极度危险之中！必须立即破坏或摧毁他们的定居点才能生存！</TSA_WD_ThreatDesc_Cat3>
+  <TSA_WD_ThreatDesc_Cat2>最高威胁：{0}，袭击倍数：x{1}。破坏或攻击他们附近的定居点以降低威胁！如果他们现在发起袭击，你很可能会面临失败！</TSA_WD_ThreatDesc_Cat2>
+  <TSA_WD_ThreatDesc_Cat1>最高威胁：{0}，袭击倍数：x{1}。在局势失控之前，破坏或攻击他们附近的定居点以降低威胁！</TSA_WD_ThreatDesc_Cat1>
+  <TSA_WD_ThreatDesc_Cat0>最高威胁：{0}，袭击倍数：x{1}</TSA_WD_ThreatDesc_Cat0>
+
+  <TSA_WD_Button_Randomize>随机化外交关系</TSA_WD_Button_Randomize>
+  <TSA_WD_Button_AllHostile>全派系敌对</TSA_WD_Button_AllHostile>
+  <TSA_WD_Button_Reset>重置为默认值</TSA_WD_Button_Reset>
+  <TSA_WD_Msg_Randomized>所有外交关系已随机化。</TSA_WD_Msg_Randomized>
+  <TSA_WD_Msg_AllHostile>所有派系现在对你处于敌对状态。</TSA_WD_Msg_AllHostile>
+  <TSA_WD_Msg_Reset>外交关系已重置为派系默认值。</TSA_WD_Msg_Reset>
+
+  <TSA_WD_LaunchExpedition>发起攻击</TSA_WD_LaunchExpedition>
+  <TSA_WD_LaunchExpeditionDesc>从该前哨站派遣一支突击部队，袭击附近的敌方定居点。</TSA_WD_LaunchExpeditionDesc>
+  <TSA_WD_RaidAnalysis>战前分析</TSA_WD_RaidAnalysis>
+  <TSA_WD_Target>目标</TSA_WD_Target>
+  <TSA_WD_AttackerPower>攻击方战力</TSA_WD_AttackerPower>
+  <TSA_WD_DefenderPower>防御方战力</TSA_WD_DefenderPower>
+  <TSA_WD_WinChance>胜率</TSA_WD_WinChance>
+  <TSA_WD_ReinforcementBreakdown>援军详情</TSA_WD_ReinforcementBreakdown>
+  <TSA_WD_ExecuteRaid>执行袭击</TSA_WD_ExecuteRaid>
+  <TSA_WD_Implications>预期后果</TSA_WD_Implications>
+  <TSA_WD_StrengthLossOnVictory>获胜后攻击方战力损失：{0}</TSA_WD_StrengthLossOnVictory>
+  <TSA_WD_StrengthLossOnDefeat>战败后攻击方战力损失：{0}</TSA_WD_StrengthLossOnDefeat>
+  <TSA_WD_RaidSuccess>袭击成功！{0} 已被制服。</TSA_WD_RaidSuccess>
+  <TSA_WD_RaidFailed_Label>攻击失败</TSA_WD_RaidFailed_Label>
+  <TSA_WD_RaidFailed_Text>来自 {0} 的突击部队被 {1} 击退。我们损失了 {2} 点战力。</TSA_WD_RaidFailed_Text>
+  <TSA_WD_Log_Raid_DefBase>{0} (目标)：战力 {1}</TSA_WD_Log_Raid_DefBase>
+  <TSA_WD_Log_Raid_DefContrib>{0} ({1})：贡献了 {2} ({3} x {4}%) [距离：{5} 格，频段：{6}]</TSA_WD_Log_Raid_DefContrib>
+
+  <TSA_WD_SameFaction>相同派系</TSA_WD_SameFaction>
+  <TSA_WD_AlliedFaction>盟友派系</TSA_WD_AlliedFaction>
+  <TSA_WD_SelectOutpostType>选择前哨站类型 (等级 {0})</TSA_WD_SelectOutpostType>
+  <TSA_WD_EstablishOutpost>建立</TSA_WD_EstablishOutpost>
+  <TSA_WD_OccupiedOutpostName>占领的 {0}</TSA_WD_OccupiedOutpostName>
+  <TSA_WD_RelativeStrength>相对强度：{0}</TSA_WD_RelativeStrength>
+
+  <TSA_WD_ReinforcementsIncoming_Label>敌方增援预计在 ({0}) 后抵达</TSA_WD_ReinforcementsIncoming_Label>
+  <TSA_WD_ReinforcementsIncoming_Text>{0} 的部队已转向支援防御，预计将在 {1} 后抵达。</TSA_WD_ReinforcementsIncoming_Text>
+  <TSA_WD_ReinforcementsArrived>增援已抵达：{0}</TSA_WD_ReinforcementsArrived>
+
+  <TSA_WD_Inspect_Vassal>附庸状态：强度 {0} / {1}</TSA_WD_Inspect_Vassal>
+  <TSA_WD_Inspect_PlayerColony>活跃玩家殖民地</TSA_WD_Inspect_PlayerColony>
+
+  <TSA_WD_Daily_WeightBuildRoad>建造道路</TSA_WD_Daily_WeightBuildRoad>
+  <TSA_WD_Daily_WeightBuildRoadTip>定居点选择向邻居建造道路段（而非进行袭击或扩张）的相对权重。</TSA_WD_Daily_WeightBuildRoadTip>
+  <TSA_WD_Daily_MaxRoadRange>最大道路建设距离</TSA_WD_Daily_MaxRoadRange>
+  <TSA_WD_Daily_MaxRoadRangeTip>定居点不会尝试向超过此地块距离的目标建造道路。</TSA_WD_Daily_MaxRoadRangeTip>
+  <TSA_WD_Log_ActionRoadBuild>{0} 已向 {1} 建造了一段新道路。</TSA_WD_Log_ActionRoadBuild>
+  <TSA_WD_Log_RoadTechDirt>泥土路</TSA_WD_Log_RoadTechDirt>
+  <TSA_WD_Log_RoadTechAsphalt>柏油公路</TSA_WD_Log_RoadTechAsphalt>
+  <TSA_WD_Growth_Roads>道路设置</TSA_WD_Growth_Roads>
+  <TSA_WD_Log_Road_Progress>{0} 正在向 {1} 建造道路地块。距离完工还剩 {2} 个地块。</TSA_WD_Log_Road_Progress>
+  <TSA_WD_Log_Road_Finished>{0} 已完成通往 {1} 的道路连接！</TSA_WD_Log_Road_Finished>
+  <TSA_WD_Log_Road_DistanceTotal>总路线距离：{0} 地块</TSA_WD_Log_Road_DistanceTotal>
+  <TSA_WD_Log_Road_DistanceLeft>当前缺口：{0} 地块</TSA_WD_Log_Road_DistanceLeft>
+  <TSA_WD_Log_Road_Blocked>从 {0} 到 {1} 的建设已停止：检测到 {2}。</TSA_WD_Log_Road_Blocked>
+  <TSA_WD_Obstacle_Impassable>无法通行的地形或水域</TSA_WD_Obstacle_Impassable>
+  <TSA_WD_Log_Road_AbortedDanger>{0} 中止了道路建设：敌对定居点 {1} 距离太近（{2} 地块）。</TSA_WD_Log_Road_AbortedDanger>
+  <TSA_WD_BuildRoad>建造道路</TSA_WD_BuildRoad>
+  <TSA_WD_BuildRoadDesc>指示此哨所开始向指定地块建造道路网。建造速度随哨所强度而变化。</TSA_WD_BuildRoadDesc>
+  <TSA_WD_RoadTargetSet>道路目的地已设为地块 {0}。</TSA_WD_RoadTargetSet>
+  <TSA_WD_RoadTargetTooFar>目标地块超出了最大建设范围。</TSA_WD_RoadTargetTooFar>
+  <TSA_WD_Inspect_RoadProgress>正在建造道路：{0}% 进度到下一段</TSA_WD_Inspect_RoadProgress>
+  <TSA_WD_Log_OutpostRoadProgress>{0} 的工人已清理出一段新路段。距离目标还剩 {1} 个地块。</TSA_WD_Log_OutpostRoadProgress>
+  <TSA_WD_RoadFinished>{0} 的道路工程已抵达目的地！</TSA_WD_RoadFinished>
+  <TSA_WD_BuildRoadStatus>正在建设通往“{0}”的道路\n进度：{1}%</TSA_WD_BuildRoadStatus>
+  <TSA_WD_CancelRoad>取消道路建设</TSA_WD_CancelRoad>
+  <TSA_WD_CancelRoadDesc>停止此哨所的所有道路建设活动。</TSA_WD_CancelRoadDesc>
+  <TSA_WD_RoadCancelled>{0} 的道路建设已停止。</TSA_WD_RoadCancelled>
+
+  <TSA_WD_OutpostManager>哨站概览</TSA_WD_OutpostManager>
+  <TSA_WD_OutpostManager_Title>哨站概览页</TSA_WD_OutpostManager_Title>
+  <TSA_WD_Outpost_Name>哨站名称</TSA_WD_Outpost_Name>
+  <TSA_WD_Outpost_Pawns>人口</TSA_WD_Outpost_Pawns>
+  <TSA_WD_Outpost_Strength>强度</TSA_WD_Outpost_Strength>
+  <TSA_WD_Outpost_Output>下次产出</TSA_WD_Outpost_Output>
+  <TSA_WD_GoTo>跳转至</TSA_WD_GoTo>
+  <TSA_WD_Outpost_Road>道路工程</TSA_WD_Outpost_Road>
+  <TSA_WD_Outpost_Status>冷却状态</TSA_WD_Outpost_Status>
+  <TSA_WD_Outpost_Produces>产出</TSA_WD_Outpost_Produces>
+  <TSA_WD_Cooldown>冷却中</TSA_WD_Cooldown>
+  <TSA_WD_Ready>可受攻击或发起进攻</TSA_WD_Ready>
+  <TSA_WD_Cooldown_Tooltip>冷却中。将在 {0} 天后重置。</TSA_WD_Cooldown_Tooltip>
+  <TSA_WD_None>无</TSA_WD_None>
+  <TSA_WD_Produces_Nothing>仅限防御/火炮</TSA_WD_Produces_Nothing>
+  <TSA_WD_Produces_RandomMisc>随机物品</TSA_WD_Produces_RandomMisc>
+  <TSA_WD_RoadAlreadyInProgress>建设已在进行中。请先取消当前工程以设定新目标。</TSA_WD_RoadAlreadyInProgress>
+  <TSA_WD_Outpost_Dist>距殖民地</TSA_WD_Outpost_Dist>
+  <TSA_WD_FilterByType>按类型筛选</TSA_WD_FilterByType>
+  <TSA_WD_Tiles>格</TSA_WD_Tiles>
+
+  <TSA_WD_SetRedirection>设置重定向目标</TSA_WD_SetRedirection>
+  <TSA_WD_ClearRedirection>清除重定向目标</TSA_WD_ClearRedirection>
+  <TSA_WD_RecruitsRedirected>来自{1}的{0}名新兵已重定向至新目的地。</TSA_WD_RecruitsRedirected>
+  <TSA_FoodSupplyInspect>食物供应：{0}/{1} ({2} 单位/天)</TSA_FoodSupplyInspect>
+  <TSA_LogisticsMode_Manual>手动</TSA_LogisticsMode_Manual>
+  <TSA_LogisticsMode_Equal>均分</TSA_LogisticsMode_Equal>
+  <TSA_LogisticsMode_FullyFeed>足额</TSA_LogisticsMode_FullyFeed>
+  <TSA_LogisticsMode_BiggestDeficit>缺口</TSA_LogisticsMode_BiggestDeficit>
+  <TSA_StarvationTitle>饥饿</TSA_StarvationTitle>
+  <TSA_StarvationDesc>{0} 在 {1} 饿死了。</TSA_StarvationDesc>
+  <TSA_LogisticsTab>物流</TSA_LogisticsTab>
+  <TSA_DistroHub>分发中心</TSA_DistroHub>
+  <TSA_ResourceReceiving>资源接收</TSA_ResourceReceiving>
+  <TSA_FoodProdConsumTitle>食物生产与消耗</TSA_FoodProdConsumTitle>
+  <TSA_FoodProdConsumMath>{0} 生产 - {1} 本地消耗 = {2} 食物盈余</TSA_FoodProdConsumMath>
+  <TSA_LocalStorage>本地存量</TSA_LocalStorage>
+  <TSA_LocalChangePerDay>每日本地变动</TSA_LocalChangePerDay>
+  <TSA_UnitsCount>{0} 单位</TSA_UnitsCount>
+  <TSA_AllocatedStatus>已分配 {0} / 可用 {1}</TSA_AllocatedStatus>
+  <TSA_OutpostsInRange>20格半径内的哨所</TSA_OutpostsInRange>
+  <TSA_IncomingSupplyLines>入站供应线：</TSA_IncomingSupplyLines>
+  <TSA_Isolated>自给自足 / 已隔离。</TSA_Isolated>
+  <TSA_OutpostInfoRow>食物：{0}/{1} | 效率：{2}</TSA_OutpostInfoRow>
+  <TSA_NetValue>净值：{0}</TSA_NetValue>
+  <TSA_ReceivingFrom>正从 {1} ({2}) 接收 {0}</TSA_ReceivingFrom>
+  <TSA_AutoUpdateNote>\n\n每12小时重新计算一次，自动合并世界变化，例如新建立的哨所、被毁的哨所或人口变动。</TSA_AutoUpdateNote>
+  <TSA_EqualTooltip>将盈余食物平均分配给范围内所有存在缺口的哨所。</TSA_EqualTooltip>
+  <TSA_FeedTooltip>优先满足可以100%填补缺口的哨所。剩余食物将由其他哨所共享。</TSA_FeedTooltip>
+  <TSA_DeficitTooltip>优先向食物短缺最严重的哨所输送所有资源。</TSA_DeficitTooltip>
+  <TSA_ManualTooltip>禁用智能逻辑。仅当你点击 +/- 按钮时分配才会改变。\n\n注意：手动模式不会根据世界变化自动调整。</TSA_ManualTooltip>
+  <TSA_EfficiencyTooltip>效率由与哨所的距离决定。\n\n10格及以内：100%\n11-15格：85%\n16-20格：70%</TSA_EfficiencyTooltip>
+  <TSA_WD_Outpost_FoodStatus>食物流量</TSA_WD_Outpost_FoodStatus>
+  <TSA_WD_JumpToOutpost>跳转至 {0}</TSA_WD_JumpToOutpost>
+
+  <TSA_WD_Diplo_Proposal_Label>外交提案</TSA_WD_Diplo_Proposal_Label>
+  <TSA_WD_Diplo_Proposal_Text>来自 {0} 的特使已经抵达。他们有意将目前的关系转变为 {1}。你接受吗？</TSA_WD_Diplo_Proposal_Text>
+  <TSA_WD_Accept>接受</TSA_WD_Accept>
+  <TSA_WD_Reject>拒绝</TSA_WD_Reject>
+  <TSA_WD_Diplo_CoalitionInvite_Label>反强权联盟</TSA_WD_Diplo_CoalitionInvite_Label>
+  <TSA_WD_Diplo_CoalitionInvite_Text>包括 {0} 在内的派系正在建立一个秘密联盟，旨在推翻世界主宰：{1}。他们正在寻求我们的支持。如果我们加入，我们将与成员结盟，但与 {1} 进入全面战争状态。</TSA_WD_Diplo_CoalitionInvite_Text>
+  <TSA_WD_JoinCoalition>加入联盟</TSA_WD_JoinCoalition>
+  <TSA_WD_Decline>谢绝</TSA_WD_Decline>
+
+  <TSA_WD_ConvertFood>转换口粮</TSA_WD_ConvertFood>
+  <TSA_WD_ConvertFoodDesc>扫描前哨站库存中具有营养价值的物品（包括膳食、肉干和生食），并将它们转换为前哨站的虚拟食物点数（转换率基于营养价值）。</TSA_WD_ConvertFoodDesc>
+  <TSA_WD_NoFoodInInventory>前哨站库存中没有任何物品。</TSA_WD_NoFoodInInventory>
+  <TSA_WD_NoValidFood>在前哨站库存中未发现具有营养价值的物品。</TSA_WD_NoValidFood>
+  <TSA_WD_FoodConverted>成功将库存物品转换为 {0} 单位虚拟食物。</TSA_WD_FoodConverted>
+  <TSA_LogisticsActive>“为前哨站生产”模式已激活</TSA_LogisticsActive>
+  <TSA_LogisticsProductionFrozen>暂停向玩家殖民地运送物资。</TSA_LogisticsProductionFrozen>
+  <TSA_ProduceForLogistics>为前哨站生产</TSA_ProduceForLogistics>
+  <TSA_ProduceForLogisticsDesc>切换该前哨站是将物资运往你的殖民地，还是为其他前哨站生产虚拟物资。</TSA_ProduceForLogisticsDesc>
+  <TSA_LogisticsDisabledWarning>“为前哨站生产”模式已禁用</TSA_LogisticsDisabledWarning>
+  <TSA_LogisticsDisabledExplanation>该前哨站目前正在生产运往你殖民地的物资。请激活“为前哨站生产”按钮以开启此物流菜单，从而向其他前哨站运送虚拟物资。</TSA_LogisticsDisabledExplanation>
+
+  <TSA_Breakdown_Title>生产详情</TSA_Breakdown_Title>
+  <TSA_Breakdown_Base>前哨站基础产量</TSA_Breakdown_Base>
+  <TSA_Breakdown_SkillBonus>技能加成产量</TSA_Breakdown_SkillBonus>
+  <TSA_Breakdown_TotalProd>总产量</TSA_Breakdown_TotalProd>
+  <TSA_Breakdown_Consumption>本地消耗</TSA_Breakdown_Consumption>
+  <Pawns>人员</Pawns>
+  <TSA_SkillCombined>{0}：{1} (均值：{2})</TSA_SkillCombined>
+
+  <TSA_WD_Food_HeaderGlobal>全局物流状态</TSA_WD_Food_HeaderGlobal>
+  <TSA_WD_Food_HeaderValues>基础生产与消耗</TSA_WD_Food_HeaderValues>
+  <TSA_WD_Food_HeaderRange>地理约束</TSA_WD_Food_HeaderRange>
+  <TSA_WD_Food_EffTitle>按半径梯度的效率衰减</TSA_WD_Food_EffTitle>
+  <TSA_WD_Food_Active>启用食物物流</TSA_WD_Food_Active>
+  <TSA_WD_Food_ActiveTooltip>如果禁用，前哨站将不再消耗虚拟食物，且供应线将停止运作。</TSA_WD_Food_ActiveTooltip>
+  <TSA_WD_Food_DisabledWarning>物流系统当前处于离线状态。请启用以查看设置。</TSA_WD_Food_DisabledWarning>
+  <TSA_WD_Food_ConsPawn>单人消耗量</TSA_WD_Food_ConsPawn>
+  <TSA_WD_Food_ConsPawnTooltip>前哨站中每名小人每日消耗的食物单位数。</TSA_WD_Food_ConsPawnTooltip>
+  <TSA_WD_Food_ProdSkill>单点技能产量</TSA_WD_Food_ProdSkill>
+  <TSA_WD_Food_ProdSkillTooltip>成员相关技能（种植/射击/动物）总和的产量加成倍率。</TSA_WD_Food_ProdSkillTooltip>
+  <TSA_WD_Food_MaxRange>最大支援半径</TSA_WD_Food_MaxRange>
+  <TSA_WD_Food_MaxRangeTooltip>农业或狩猎前哨站可以输送食物的最远地块距离。</TSA_WD_Food_MaxRangeTooltip>
+  <TSA_WD_Food_Eff60Tip>最大半径 60% 以内的前哨站物流效率。</TSA_WD_Food_Eff60Tip>
+  <TSA_WD_Food_Eff80Tip>最大半径 60% 至 80% 之间的前哨站物流效率。</TSA_WD_Food_Eff80Tip>
+  <TSA_WD_Food_Eff100Tip>最大半径 80% 至 100% 之间的前哨站物流效率。</TSA_WD_Food_Eff100Tip>
+  <TSA_WD_Food_Reset>重置食物物流设置</TSA_WD_Food_Reset>
+  <TSA_WD_BtnOutpostFood>前哨站食物物流</TSA_WD_BtnOutpostFood>
+
+  <TSA_WD_DiplomacyMatrix>外交关系表</TSA_WD_DiplomacyMatrix>
+  <TSA_WD_DiplomacyMatrix_Title>全球外交关系</TSA_WD_DiplomacyMatrix_Title>
+  <TSA_WD_Diplomacy_Faction>派系</TSA_WD_Diplomacy_Faction>
+  <TSA_WD_Diplomacy_HostileTo>敌对</TSA_WD_Diplomacy_HostileTo>
+  <TSA_WD_Diplomacy_NeutralWith>中立</TSA_WD_Diplomacy_NeutralWith>
+  <TSA_WD_Diplomacy_AllyOf>盟友</TSA_WD_Diplomacy_AllyOf>
+  <TSA_WD_AttackRadius>攻击范围</TSA_WD_AttackRadius>
+  <TSA_WD_LogisticsRadius>物流范围</TSA_WD_LogisticsRadius>
+  <TSA_WD_Log_ActionSkip>跳过操作：派系受限或处于冷却中。</TSA_WD_Log_ActionSkip>
+  <TS_WD_Log_FactionLabel>派系：{0}</TS_WD_Log_FactionLabel>
+  <TSA_WD_FilterByName>按名称筛选</TSA_WD_FilterByName>
+  <TSA_WD_WorldDominationWindows>世界主宰窗口</TSA_WD_WorldDominationWindows>
+  <TSA_WD_Stats_H_Threat>袭击点数倍率</TSA_WD_Stats_H_Threat>
+
+  <TSA_WD_RoadType>道路类型</TSA_WD_RoadType>
+  <TSA_WD_SelectRoadTypeDesc>更改正在建造的道路质量。更高级别的道路需要更高的技能和更多的时间。</TSA_WD_SelectRoadTypeDesc>
+  <TSA_WD_RoadDirt>土路</TSA_WD_RoadDirt>
+  <TSA_WD_RoadStone>石路</TSA_WD_RoadStone>
+  <TSA_WD_RoadAsphalt>柏油路</TSA_WD_RoadAsphalt>
+  <TSA_WD_RoadStone_Disabled>石路 (需要 15 级建造技能，当前：{0})</TSA_WD_RoadStone_Disabled>
+  <TSA_WD_RoadAsphalt_Disabled>柏油路 (需要 30 级建造技能，当前：{0})</TSA_WD_RoadAsphalt_Disabled>
+  <TSA_WD_Dirt>泥土</TSA_WD_Dirt>
+  <TSA_WD_Stone>岩石</TSA_WD_Stone>
+  <TSA_WD_Asphalt>沥青</TSA_WD_Asphalt>
+  <TSA_WD_FilterByActor>按行动者筛选</TSA_WD_FilterByActor>
+  <TSA_WD_FilterByTarget>按目标筛选</TSA_WD_FilterByTarget>
+  <TSA_WD_FilterByMessage>按消息筛选</TSA_WD_FilterByMessage>
+  <TSA_WD_Log_HeaderTime>时间戳</TSA_WD_Log_HeaderTime>
+  <TSA_WD_Inspect_RoadStatus>{0} 通往 {2}：{1}%</TSA_WD_Inspect_RoadStatus>
+
+  <TSA_WD_Tier4>等级 4</TSA_WD_Tier4>
+  <TSA_WD_Daily_Tier4Tip>都城的每日强度贡献倍率。这些巨大的枢纽产生绝大部分的全球影响力。</TSA_WD_Daily_Tier4Tip>
+  <TSA_WD_SubType_Citadel>都城</TSA_WD_SubType_Citadel>
+  <TS_WD_Threat_Tier4>T4 定居点袭击点数倍率</TS_WD_Threat_Tier4>
+  <TS_WD_Threat_Tier4Tooltip>T4 都城的袭击点数倍率</TS_WD_Threat_Tier4Tooltip>
+  <TSA_WD_Growth_LocalMaxT4>局部 T4 都城上限</TSA_WD_Growth_LocalMaxT4>
+  <TSA_WD_Growth_LocalMaxT4Tooltip>最大扩张半径内允许存在的 T4 定居点的最大数量。</TSA_WD_Growth_LocalMaxT4Tooltip>
+
+  <TSA_WD_Gen_HeaderWeights>初始世界生成权重</TSA_WD_Gen_HeaderWeights>
+  <TSA_WD_Gen_Tier1Tip>定居点作为 1 级前哨站开始生成的概率。</TSA_WD_Gen_Tier1Tip>
+  <TSA_WD_Gen_Tier2Tip>定居点作为 2 级城镇开始生成的概率。</TSA_WD_Gen_Tier2Tip>
+  <TSA_WD_Gen_Tier3Tip>定居点作为 3 级要塞开始生成的概率。</TSA_WD_Gen_Tier3Tip>
+  <TSA_WD_Gen_Tier4Tip>定居点作为 4 级都城开始生成的概率。</TSA_WD_Gen_Tier4Tip>
+  <TSA_WD_Gen_CitadelChanceInfo>当前都城生成概率：{0}</TSA_WD_Gen_CitadelChanceInfo>
+  <TSA_WD_Gen_Reset>重置为默认值</TSA_WD_Gen_Reset>
+  <TSA_WD_BtnWorldGen>初始世界生成</TSA_WD_BtnWorldGen>
+  <TSA_WD_Gen_RerollAll>立即重新随机定居点等级</TSA_WD_Gen_RerollAll>
+  <TSA_WD_ConfirmReroll>你确定吗？此操作无法撤销！</TSA_WD_ConfirmReroll>
+  <TSA_WD_Stats_WorldTotals>各级总计</TSA_WD_Stats_WorldTotals>
+
+  <TSA_WD_Diplo_Zeal_Label>增益：动员状态</TSA_WD_Diplo_Zeal_Label>
+  <TSA_WD_Diplo_ExpansionistZeal_Msg>增益：在接下来的7天内，“{0}”的攻击范围将翻倍。</TSA_WD_Diplo_ExpansionistZeal_Msg>
+  <TSA_WD_Diplo_LeaderHandicap_Label>减益：世界领袖</TSA_WD_Diplo_LeaderHandicap_Label>
+  <TSA_WD_Diplo_LeaderHandicap_Msg>减益：“{0}”已成为主导派系。由于规模庞大，他们在接下来的10天内将面临更多突发事件。</TSA_WD_Diplo_LeaderHandicap_Msg>
+  <TSA_WD_Diplo_UnderdogBuff_Label>增益：成长加速</TSA_WD_Diplo_UnderdogBuff_Label>
+  <TSA_WD_Diplo_UnderdogBuff_Msg>增益：得益于规模较小且灵活，“{0}”在接下来的10天内成长速度将加快。</TSA_WD_Diplo_UnderdogBuff_Msg>
+  <TSA_WD_Status_Zeal>增益：扩张主义</TSA_WD_Status_Zeal>
+  <TSA_WD_Status_ZealTip>增益：在接下来的 {0} 天内，袭击攻击范围翻倍。</TSA_WD_Status_ZealTip>
+  <TSA_WD_Status_Debuff>减益：世界领袖</TSA_WD_Status_Debuff>
+  <TSA_WD_Status_DebuffTip>减益：由于规模庞大，事件发生权重翻倍。将在 {0} 天后过期。</TSA_WD_Status_DebuffTip>
+  <TSA_WD_Status_Buff>增益：灵活机动</TSA_WD_Status_Buff>
+  <TSA_WD_Status_BuffTip>增益：规模小而灵活，扩张与成长速度翻倍。\n事件发生权重减半。\n将在 {0} 天后过期。</TSA_WD_Status_BuffTip>
+  <TSA_WD_Inspect_AttackRange>攻击范围：{0} 格</TSA_WD_Inspect_AttackRange>
+  <TSA_WD_Inspect_AttackRange_Zeal>攻击范围 (狂热)：{0} 格</TSA_WD_Inspect_AttackRange_Zeal>
+  <TSA_WD_Stats_H_Status>增益与减益</TSA_WD_Stats_H_Status>
+
+  <TSA_WD_Stats_Title>全球派系统计数据</TSA_WD_Stats_Title>
+  <TSA_WD_Stats_Subtitle>定居点等级与实力的详细概览</TSA_WD_Stats_Subtitle>
+  <TSA_WD_Stats_H_Faction>派系</TSA_WD_Stats_H_Faction>
+  <TSA_WD_Stats_H_T1>1 级</TSA_WD_Stats_H_T1>
+  <TSA_WD_Stats_H_T2>2 级</TSA_WD_Stats_H_T2>
+  <TSA_WD_Stats_H_T3>3 级</TSA_WD_Stats_H_T3>
+  <TSA_WD_Stats_H_T4>4 级</TSA_WD_Stats_H_T4>
+  <TSA_WD_Stats_H_Influence>总计</TSA_WD_Stats_H_Influence>
+  <TSA_WD_Stats_TierCell>数量：{0}\nT{2} 总实力：{1}\n占全球 T{2} 实力：{3}</TSA_WD_Stats_TierCell>
+  <TSA_WD_Stats_TotalCell>定居点总数：{0}\n总实力：{1}\n占全球总实力：{2}</TSA_WD_Stats_TotalCell>
+  
+  <TSA_WD_OpenAllegianceMatrix>允许的外交变更</TSA_WD_OpenAllegianceMatrix>
+	<TSA_WD_AllegianceLock_Title>允许的外交变更</TSA_WD_AllegianceLock_Title>
+	<TSA_WD_BtnReset>默认</TSA_WD_BtnReset>
+	<TSA_WD_BtnResetGlobal>永久敌对</TSA_WD_BtnResetGlobal>
+	<TSA_WD_BtnAllowAll>允许全部</TSA_WD_BtnAllowAll>
+	<TSA_WD_BtnLockAll>锁定全部</TSA_WD_BtnLockAll>
+	
+	<TSA_WD_BtnReset_Tooltip>永久敌对派系（虫群和原版永久敌人）无法更改与玩家的关系。</TSA_WD_BtnReset_Tooltip>
+	<TSA_WD_BtnResetGlobal_Tooltip>永久敌对派系（虫群和原版永久敌人）无法更改与任何人的关系。</TSA_WD_BtnResetGlobal_Tooltip>
+	<TSA_WD_BtnAllowAll_Tooltip>每个派系都能与其他任何派系更改外交关系。</TSA_WD_BtnAllowAll_Tooltip>
+	<TSA_WD_BtnLockAll_Tooltip>世界霸权(World Domination)模组将不会引发任何外交关系变更。</TSA_WD_BtnLockAll_Tooltip>
+	
+	<TSA_WD_BtnClear>清除</TSA_WD_BtnClear>
+
+	<TSA_WD_StatusLocked>已锁定</TSA_WD_StatusLocked>
+	<TSA_WD_StatusPossible>可能变更</TSA_WD_StatusPossible>
+	<TSA_WD_OnlyInGame>该菜单仅在游戏运行时可用。</TSA_WD_OnlyInGame>
+	
+	<TSA_WD_AllegianceLock_ScopeInfo>此列表仅适用于世界霸权(World Domination)模组尝试的外交变更</TSA_WD_AllegianceLock_ScopeInfo>
+	
+	<TSA_WD_BtnGarrisonSettings>驻军倍数</TSA_WD_BtnGarrisonSettings>
+  <TSA_WD_Garrison_Title>定居点驻军规模缩放</TSA_WD_Garrison_Title>
+  <TSA_WD_HeaderTribalGarrisons>部落派系</TSA_WD_HeaderTribalGarrisons>
+  <TSA_WD_HeaderGenericGarrisons>工业/外来者派系</TSA_WD_HeaderGenericGarrisons>
+  <TSA_WD_Garrison_T1>1级（营地）倍数</TSA_WD_Garrison_T1>
+  <TSA_WD_Garrison_T2>2级（城镇）倍数</TSA_WD_Garrison_T2>
+  <TSA_WD_Garrison_T3>3级（城市）倍数</TSA_WD_Garrison_T3>
+  <TSA_WD_Garrison_T4>4级（要塞）倍数</TSA_WD_Garrison_T4>
+  <TSA_WD_Garrison_Tooltip>缩放用于生成防御者的点数。默认值为1.0。较高的值会增加敌人的数量和质量。</TSA_WD_Garrison_Tooltip>
+
+</LanguageData>

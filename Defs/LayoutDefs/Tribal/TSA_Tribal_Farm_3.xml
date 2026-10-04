@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <KCSG.StructureLayoutDef>
+    <defName>TSA_Tribal_Farm_3</defName>
+	    <terrainGrid>
+      <li>.,.,.,.,.,.,.,.,.</li>
+      <li>.,Soil,Soil,Soil,Soil,Soil,Soil,Soil,.</li>
+      <li>.,Soil,Soil,Soil,Soil,Soil,Soil,Soil,.</li>
+      <li>.,Soil,Soil,Soil,Soil,Soil,Soil,Soil,.</li>
+      <li>.,Soil,Soil,Soil,Soil,Soil,Soil,Soil,.</li>
+      <li>.,Soil,Soil,Soil,Soil,Soil,Soil,Soil,.</li>
+      <li>.,Soil,Soil,Soil,Soil,Soil,Soil,Soil,.</li>
+      <li>.,Soil,Soil,Soil,Soil,Soil,Soil,Soil,.</li>
+      <li>.,Soil,Soil,Soil,Soil,Soil,Soil,Soil,.</li>
+      <li>.,Soil,Soil,Soil,Soil,Soil,Soil,Soil,.</li>
+      <li>.,Soil,Soil,Soil,Soil,Soil,Soil,Soil,.</li>
+      <li>.,Soil,Soil,Soil,Soil,Soil,Soil,Soil,.</li>
+      <li>.,Soil,Soil,Soil,Soil,Soil,Soil,Soil,.</li>
+      <li>.,Soil,Soil,Soil,Soil,Soil,Soil,Soil,.</li>
+      <li>.,.,.,.,.,.,.,.,.</li>
+    </terrainGrid>
+    <layouts>
+      <li>
+        <li>Fence,Fence,Fence,Fence,Fence,Fence,Fence,Fence,Fence</li>
+        <li>Fence,.,.,.,.,.,.,.,Fence</li>
+        <li>Fence,.,Plant_Devilstrand,Plant_Devilstrand,Plant_Devilstrand,Plant_Devilstrand,Plant_Devilstrand,.,Fence</li>
+        <li>Fence,.,Plant_Devilstrand,Plant_Devilstrand,Plant_Devilstrand,Plant_Devilstrand,Plant_Devilstrand,.,Fence</li>
+        <li>Fence,.,Plant_Devilstrand,Plant_Devilstrand,Plant_Devilstrand,Plant_Devilstrand,Plant_Devilstrand,.,Fence</li>
+        <li>Fence,.,Plant_Devilstrand,Plant_Devilstrand,Plant_Devilstrand,Plant_Devilstrand,Plant_Devilstrand,.,Fence</li>
+        <li>Fence,.,Plant_Devilstrand,Plant_Devilstrand,Plant_Devilstrand,Plant_Devilstrand,Plant_Devilstrand,.,Fence</li>
+        <li>Fence,.,Plant_Devilstrand,Plant_Devilstrand,Plant_Devilstrand,Plant_Devilstrand,Plant_Devilstrand,.,Fence</li>
+        <li>Fence,.,Plant_Devilstrand,Plant_Devilstrand,Plant_Devilstrand,Plant_Devilstrand,Plant_Devilstrand,.,Fence</li>
+        <li>Fence,.,Plant_Devilstrand,Plant_Devilstrand,Plant_Devilstrand,Plant_Devilstrand,Plant_Devilstrand,.,Fence</li>
+        <li>Fence,.,Plant_Devilstrand,Plant_Devilstrand,Plant_Devilstrand,Plant_Devilstrand,Plant_Devilstrand,.,Fence</li>
+        <li>Fence,.,Plant_Devilstrand,Plant_Devilstrand,Plant_Devilstrand,Plant_Devilstrand,Plant_Devilstrand,.,Fence</li>
+        <li>Fence,.,Plant_Devilstrand,Plant_Devilstrand,Plant_Devilstrand,Plant_Devilstrand,Plant_Devilstrand,.,Fence</li>
+        <li>Fence,.,.,.,.,.,.,.,Fence</li>
+        <li>Fence,Fence,Fence,Fence,FenceGate,Fence,Fence,Fence,Fence</li>
+      </li>
+    </layouts>
+
+    <tags>
+      <li>TSA_Tribal_Farm</li>
+    </tags>
+  </KCSG.StructureLayoutDef>
+</Defs>

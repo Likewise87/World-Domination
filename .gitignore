@@ -1,0 +1,32 @@
+# Editors / local tooling
+.cursor/
+**/.cursor/
+.vscode/
+.idea/
+.vs/
+**/.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+**/*.code-workspace
+
+# Build intermediates (keep Assemblies/*.dll for the mod)
+**/[Bb]in/
+**/[Oo]bj/
+*.pdb
+
+# Steam Workshop local publish marker (ties to Steam account)
+About/PublishedFileId.txt
+
+# OS
+Thumbs.db
+Desktop.ini
+.DS_Store
+ehthumbs.db
+
+# Secrets
+.env
+.env.*
+*.pem
+credentials.json

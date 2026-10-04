@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <KCSG.StructureLayoutDef>
+    <defName>TSA_Tribal_BigBarracks_3</defName>
+    <layouts>
+      <li>
+        <li>.,.,.,.,.,.,.,.,.,Wall_WoodLog,Wall_WoodLog,Wall_WoodLog,Wall_WoodLog,.</li>
+        <li>.,VFEPD_PoplarTree,.,.,.,.,.,.,.,Wall_WoodLog,VFEPD_BoxLarge_South,VFEPD_BrewingBarrel,Wall_WoodLog,Wall_WoodLog</li>
+        <li>VFEPD_TeakTree,.,Wall_WoodLog,Wall_WoodLog,Wall_WoodLog,Wall_WoodLog,VFEPD_Bush,.,.,Wall_WoodLog,.,.,Bedroll_Leather_Light_West,Wall_WoodLog</li>
+        <li>.,Wall_WoodLog,Wall_WoodLog,VFEPD_BoxLarge_South,PlantPot_WoodLog,Wall_WoodLog,VFEPD_BrewingBarrel,.,.,Wall_WoodLog,.,.,.,Wall_WoodLog</li>
+        <li>.,Wall_WoodLog,TorchLamp,.,.,Door_WoodLog,.,.,.,Wall_WoodLog,Wall_WoodLog,.,TorchLamp,Wall_WoodLog</li>
+        <li>.,Wall_WoodLog,.,.,VFEPD_CoffeeTableSmall_WoodLog,Wall_WoodLog,.,VFEPD_WoodenSign,.,VFEPD_Bush,Wall_WoodLog,Door_WoodLog,Wall_WoodLog,Wall_WoodLog</li>
+        <li>.,Wall_WoodLog,Bedroll_Leather_Light_South,Wall_WoodLog,Wall_WoodLog,Wall_WoodLog,.,.,.,.,.,.,.,.</li>
+        <li>Wall_WoodLog,Wall_WoodLog,Wall_WoodLog,Wall_WoodLog,.,Door_WoodLog,.,VFEPD_BrewingBarrel,.,TorchLamp,.,.,.,.</li>
+        <li>Wall_WoodLog,.,.,.,.,Wall_WoodLog,Wall_WoodLog,Wall_WoodLog,Door_WoodLog,Wall_WoodLog,Wall_WoodLog,VFEPD_PoplarTree,.,.</li>
+        <li>Wall_WoodLog,BedrollDouble_Leather_Plain_East,.,.,PlantPot_WoodLog,Wall_WoodLog,VFEPD_BoxLarge_South,.,.,TorchLamp,Wall_WoodLog,Wall_WoodLog,.,.</li>
+        <li>Wall_WoodLog,TorchLamp,.,VFEPD_BrewingBarrel,Wall_WoodLog,Wall_WoodLog,Wall_WoodLog,VFEPD_CoffeeTableSmall_WoodLog,.,.,Shelf_WoodLog_West,Wall_WoodLog,.,.</li>
+        <li>Wall_WoodLog,Wall_WoodLog,Wall_WoodLog,Wall_WoodLog,Wall_WoodLog,.,Wall_WoodLog,Bedroll_Leather_Light_East,.,.,.,Wall_WoodLog,.,.</li>
+        <li>.,.,.,.,VFEPD_Bush,.,Wall_WoodLog,Wall_WoodLog,Wall_WoodLog,Wall_WoodLog,Wall_WoodLog,Wall_WoodLog,.,VFEPD_TeakTree</li>
+      </li>
+    </layouts>
+    <terrainGrid>
+      <li>.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
+      <li>.,.,.,.,.,.,.,.,.,.,WoodPlankFloor,WoodPlankFloor,WoodPlankFloor,.</li>
+      <li>.,.,WoodPlankFloor,WoodPlankFloor,WoodPlankFloor,WoodPlankFloor,.,.,.,.,WoodPlankFloor,WoodPlankFloor,WoodPlankFloor,.</li>
+      <li>.,.,WoodPlankFloor,WoodPlankFloor,WoodPlankFloor,WoodPlankFloor,.,.,.,.,WoodPlankFloor,WoodPlankFloor,WoodPlankFloor,.</li>
+      <li>.,.,WoodPlankFloor,WoodPlankFloor,WoodPlankFloor,WoodPlankFloor,.,.,.,.,WoodPlankFloor,WoodPlankFloor,WoodPlankFloor,.</li>
+      <li>.,.,WoodPlankFloor,WoodPlankFloor,WoodPlankFloor,WoodPlankFloor,.,.,.,.,.,WoodPlankFloor,.,.</li>
+      <li>.,.,WoodPlankFloor,WoodPlankFloor,WoodPlankFloor,WoodPlankFloor,.,.,.,.,.,.,.,.</li>
+      <li>.,WoodPlankFloor,WoodPlankFloor,WoodPlankFloor,WoodPlankFloor,WoodPlankFloor,.,.,.,.,.,.,.,.</li>
+      <li>.,WoodPlankFloor,WoodPlankFloor,WoodPlankFloor,WoodPlankFloor,WoodPlankFloor,.,.,WoodPlankFloor,.,.,.,.,.</li>
+      <li>.,WoodPlankFloor,WoodPlankFloor,WoodPlankFloor,WoodPlankFloor,WoodPlankFloor,WoodPlankFloor,WoodPlankFloor,WoodPlankFloor,WoodPlankFloor,WoodPlankFloor,.,.,.</li>
+      <li>.,WoodPlankFloor,WoodPlankFloor,WoodPlankFloor,WoodPlankFloor,WoodPlankFloor,WoodPlankFloor,WoodPlankFloor,WoodPlankFloor,WoodPlankFloor,WoodPlankFloor,.,.,.</li>
+      <li>.,.,.,.,.,.,WoodPlankFloor,WoodPlankFloor,WoodPlankFloor,WoodPlankFloor,WoodPlankFloor,.,.,.</li>
+      <li>.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
+    </terrainGrid>
+    <tags>
+      <li>TSA_Tribal_BigBarracks</li>
+    </tags>
+  </KCSG.StructureLayoutDef>
+</Defs>

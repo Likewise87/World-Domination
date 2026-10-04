@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <KCSG.SettlementLayoutDef>
+    <defName>TSA_Generic_T2_Production</defName>
+    <settlementSize>50,50</settlementSize>
+    <avoidBridgeable>true</avoidBridgeable>
+    <avoidMountains>true</avoidMountains>
+    
+    <centerBuildings>
+	  <centralBuildingTags>
+        <li>Generic_Production</li>
+      </centralBuildingTags>
+      <allowedStructures>
+        <li>
+          <tag>Generic_Bedroom</tag>
+          <count>1~3</count>
+        </li>
+        <li>
+          <tag>Generic_Luxury_Bedroom</tag>
+          <count>0~2</count>
+        </li>
+        <li>
+          <tag>Generic_Production</tag>
+          <count>1~2</count>
+        </li>
+		<li>
+          <count>0~2</count>
+          <tag>Generic_Stockpile</tag>
+        </li>
+      </allowedStructures>
+    </centerBuildings>
+
+    <peripheralBuildings>
+      <allowedStructures>
+        <li>
+          <tag>TSA_Tribal_Barricade</tag>
+          <count>1~8</count>
+        </li>
+      </allowedStructures>
+    </peripheralBuildings>
+
+	<defenseOptions>
+		<addEdgeDefense>true</addEdgeDefense>
+		<addSandbags>true</addSandbags>
+		<addTurrets>false</addTurrets>
+		<pawnGroupMultiplier>0.75</pawnGroupMultiplier>
+	</defenseOptions>
+
+    <propsOptions>
+      <scatterProps>true</scatterProps>
+      <scatterMinDistance>5</scatterMinDistance>
+      <scatterMaxAmount>12</scatterMaxAmount>
+      <scatterPropsDefs>
+        <li MayRequire="VanillaExpanded.VFEPropsandDecor">VFEPD_BoxSmall</li>
+		<li MayRequire="VanillaExpanded.VFEPropsandDecor">VFEPD_WoodenWagon</li>
+		<li MayRequire="VanillaExpanded.VFEPropsandDecor">VFEPD_FilthDirt</li>
+		<li MayRequire="VanillaExpanded.VFEPropsandDecor">VFEPD_WoodenChest</li>
+      </scatterPropsDefs>
+    </propsOptions>
+
+    <stockpileOptions>
+      <stockpileValueMultiplier>0.7</stockpileValueMultiplier>
+      <fillStorageBuildings>true</fillStorageBuildings>
+      <fillWithDefs>
+        <li>Chemfuel</li>
+        <li>Steel</li>
+		<li>ComponentIndustrial</li>
+      </fillWithDefs>
+    </stockpileOptions>
+  </KCSG.SettlementLayoutDef>
+</Defs>

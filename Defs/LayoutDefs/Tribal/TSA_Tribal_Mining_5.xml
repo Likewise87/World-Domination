@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <KCSG.StructureLayoutDef>
+    <defName>TSA_Tribal_Mining_5</defName>
+<layouts>
+      <li>
+        <li>.,.,.,.,.,.,.,.,.,.,.,.</li>
+        <li>.,.,.,.,.,.,.,.,.,.,.,.</li>
+        <li>.,.,.,.,.,.,.,.,.,.,.,.</li>
+        <li>.,.,.,.,.,.,.,.,.,.,.,.</li>
+        <li>.,.,.,.,.,.,.,.,.,.,.,.</li>
+        <li>.,.,.,.,.,.,.,.,.,.,.,.</li>
+        <li>.,.,.,.,.,.,.,.,.,.,.,.</li>
+        <li>.,.,.,.,.,.,.,.,.,.,.,.</li>
+        <li>.,.,.,.,.,.,.,.,.,.,.,.</li>
+        <li>.,.,.,.,.,.,.,.,.,.,.,.</li>
+        <li>.,.,.,Gold,Gold,Gold,.,.,.,.,.,.</li>
+        <li>.,.,.,.,.,.,.,.,.,.,.,.</li>
+        <li>.,.,.,.,.,.,.,.,.,.,.,.</li>
+      </li>
+      <li>
+        <li>Fence_WoodLog,Fence_WoodLog,Fence_WoodLog,Fence_WoodLog,Fence_WoodLog,Fence_WoodLog,Fence_WoodLog,Fence_WoodLog,Fence_WoodLog,Fence_WoodLog,Fence_WoodLog,Fence_WoodLog</li>
+        <li>.,TorchLamp,.,.,.,.,.,.,.,.,TorchLamp,.</li>
+        <li>.,.,.,.,.,.,.,.,.,.,.,.</li>
+        <li>.,.,.,TorchLamp,.,.,.,.,TorchLamp,.,.,.</li>
+        <li>.,.,Fence_WoodLog,.,Fence_WoodLog,Fence_WoodLog,MineableGold,Fence_WoodLog,.,.,Fence_WoodLog,.</li>
+        <li>.,.,Fence_WoodLog,.,MineableGold,MineableGold,MineableGold,MineableGold,.,.,Fence_WoodLog,.</li>
+        <li>.,.,Fence_WoodLog,.,MineableGold,.,.,MineableGold,.,.,Fence_WoodLog,.</li>
+        <li>.,.,Fence_WoodLog,.,Fence_WoodLog,MineableGold,.,.,.,.,Fence_WoodLog,.</li>
+        <li>.,.,.,TorchLamp,.,.,.,.,TorchLamp,.,.,.</li>
+        <li>.,.,.,.,.,.,.,.,.,.,.,.</li>
+        <li>.,.,Fence_WoodLog,.,Shelf_WoodLog_South,.,Shelf_WoodLog_South,Fence_WoodLog,.,.,.,.</li>
+        <li>.,.,Fence_WoodLog,Fence_WoodLog,Fence_WoodLog,Fence_WoodLog,Fence_WoodLog,Fence_WoodLog,.,.,.,.</li>
+        <li>.,.,.,.,.,.,.,.,.,.,.,.</li>
+      </li>
+    </layouts>
+    <tags>
+      <li>TSA_Tribal_Mining</li>
+    </tags>
+  </KCSG.StructureLayoutDef>
+</Defs>

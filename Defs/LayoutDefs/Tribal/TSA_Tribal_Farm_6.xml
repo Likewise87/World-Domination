@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <KCSG.StructureLayoutDef>
+    <defName>TSA_Tribal_Farm_Organic_Small</defName>
+    <terrainGrid>
+      <li>.,.,.,.,.,.,.</li>
+      <li>.,.,Soil,Soil,.,.,.</li>
+      <li>.,Soil,Soil,Soil,Soil,.,.</li>
+      <li>.,Soil,Soil,Soil,Soil,Soil,.</li>
+      <li>.,Soil,Soil,Soil,Soil,.,.</li>
+      <li>.,.,Soil,Soil,.,.,.</li>
+      <li>.,.,.,.,.,.,.</li>
+    </terrainGrid>
+    <layouts>
+      <li>
+        <li>.,.,.,.,.,.,.</li>
+        <li>.,.,Plant_Smokeleaf,Plant_Smokeleaf,.,.,.</li>
+        <li>.,Plant_Smokeleaf,Plant_Smokeleaf,Plant_Smokeleaf,Plant_Smokeleaf,.,.</li>
+        <li>.,Plant_Smokeleaf,Plant_Smokeleaf,Plant_Smokeleaf,Plant_Smokeleaf,Plant_Smokeleaf,.</li>
+        <li>.,Plant_Smokeleaf,Plant_Smokeleaf,Plant_Smokeleaf,Plant_Smokeleaf,.,.</li>
+        <li>.,.,Plant_Smokeleaf,Plant_Smokeleaf,.,.,.</li>
+        <li>.,.,.,.,.,.,.</li>
+      </li>
+    </layouts>
+    <tags>
+      <li>TSA_Tribal_Farm</li>
+    </tags>
+  </KCSG.StructureLayoutDef>
+</Defs>

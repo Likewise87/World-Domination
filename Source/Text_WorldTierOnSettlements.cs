@@ -1,86 +1,130 @@
-﻿using System;
+﻿using System.Collections.Generic;
+using RimWorld;
 using RimWorld.Planet;
 using UnityEngine;
 using Verse;
+using Event = UnityEngine.Event;
+using EventType = UnityEngine.EventType;
 
 namespace WorldDomination
 {
     public class Text_WorldTierOnSettlements : WorldComponent
     {
+        private List<(WorldObject Obj, CompViralSpread Comp)> tierLabelCache;
+        private int tierLabelCacheTick = -999;
+        private const int TierLabelCacheIntervalTicks = 300;
+
         public Text_WorldTierOnSettlements(World world) : base(world) { }
+
+        public void NotifyTierLabelCacheDirty()
+        {
+            tierLabelCacheTick = -999;
+        }
+
+        private void EnsureTierLabelCacheFresh()
+        {
+            int tick = Current.ProgramState == ProgramState.Playing ? (Find.TickManager?.TicksGame ?? 0) : Time.frameCount;
+            if (tierLabelCache != null && tick - tierLabelCacheTick < TierLabelCacheIntervalTicks) return;
+            tierLabelCacheTick = tick;
+            tierLabelCache ??= new List<(WorldObject, CompViralSpread)>(128);
+            tierLabelCache.Clear();
+            if (Find.WorldObjects == null) return;
+            var settlements = Find.WorldObjects.Settlements;
+            for (int i = 0; i < settlements.Count; i++)
+            {
+                Settlement s = settlements[i];
+                if (s == null || s.Destroyed) continue;
+                var comp = s.GetComponent<CompViralSpread>();
+                if (comp == null || comp.subType == "Excluded") continue;
+                if (s.Faction != null && s.Faction.IsPlayer) continue;
+                if (comp.IsOutpost) continue;
+                tierLabelCache.Add((s, comp));
+            }
+        }
 
         public override void WorldComponentOnGUI()
         {
             base.WorldComponentOnGUI();
 
-            // 1. Check if we are in playing state and rendering the world
             if (Current.ProgramState != ProgramState.Playing || !WorldRendererUtility.WorldRendered)
-            {
                 return;
-            }
 
-            // NEW GATE: Respect the World Map toggle
             if (!WorldComponent_WDVisualizerToggle.ShowVisuals)
-            {
                 return;
-            }
+
+            if (Event.current.type != EventType.Repaint)
+                return;
 
             if (Find.WorldCameraDriver.AltitudePercent > 0.25f)
-            {
                 return;
-            }
 
-            foreach (WorldObject worldObject in Find.WorldObjects.AllWorldObjects)
+            EnsureTierLabelCacheFresh();
+            if (tierLabelCache == null || tierLabelCache.Count == 0) return;
+
+            float bottomStripHeight = 80f;
+
+            for (int i = 0; i < tierLabelCache.Count; i++)
             {
-                CompViralSpread comp = worldObject.GetComponent<CompViralSpread>();
+                var (worldObject, comp) = tierLabelCache[i];
+                if (worldObject.Destroyed) continue;
 
+                if (!WorldObjectSelectionUtility.VisibleToCameraNow(worldObject)) continue;
 
-                if (comp == null || comp.subType == "Excluded") continue;
+                Vector2 screenPos = WorldObjectSelectionUtility.ScreenPos(worldObject);
 
-                if (worldObject.Faction != null && worldObject.Faction.IsPlayer) continue;
-                if (comp.IsOutpost) continue;
-
-                if (WorldObjectSelectionUtility.HiddenBehindTerrainNow(worldObject))
+                int tierIdx = (int)comp.tier;
+                if (tierIdx < 0 || tierIdx > 3) tierIdx = 0;
+                string labelText = TierLabels[tierIdx];
+                Text.Font = GameFont.Tiny;
+                Text.Anchor = TextAnchor.MiddleCenter;
+                if (!tierLabelWidthsCached)
                 {
+                    for (int t = 0; t < 4; t++) TierLabelWidths[t] = Text.CalcSize(TierLabels[t]).x;
+                    tierLabelWidthsCached = true;
+                }
+                float textSize = TierLabelWidths[tierIdx];
+                float yOffset = -32f;
+                Rect rect = new Rect(screenPos.x - textSize / 2f, screenPos.y + yOffset, textSize, 20f);
+
+                if (rect.yMax > (float)UI.screenHeight - bottomStripHeight)
+                {
+                    Text.Anchor = TextAnchor.UpperLeft;
+                    Text.Font = GameFont.Small;
                     continue;
                 }
 
-                string labelText = comp.tier.ToString();
-                Vector2 screenPos = WorldObjectSelectionUtility.ScreenPos(worldObject);
-
-                Text.Font = GameFont.Tiny;
-                Text.Anchor = TextAnchor.MiddleCenter;
-
                 Color labelColor = GetColorForTier(comp.tier);
-                float textSize = Text.CalcSize(labelText).x;
-                float yOffset = -32f;
-
-                Rect rect = new Rect(screenPos.x - textSize / 2f, screenPos.y + yOffset, textSize, 20f);
-
-                // Draw Shadow
                 Color originalColor = GUI.color;
-                GUI.color = new Color(0, 0, 0, 0.8f);
+
+                GUI.color = ShadowColor;
                 Rect shadowRect = new Rect(rect.x + 1f, rect.y + 1f, rect.width, rect.height);
                 Widgets.Label(shadowRect, labelText);
 
-                // Draw Main Label
                 GUI.color = labelColor;
                 Widgets.Label(rect, labelText);
 
-                // Cleanup
                 GUI.color = originalColor;
                 Text.Anchor = TextAnchor.UpperLeft;
                 Text.Font = GameFont.Small;
             }
         }
 
-        private Color GetColorForTier(SettlementTier tier)
+        private static readonly string[] TierLabels = { "T1", "T2", "T3", "T4" };
+        private static readonly float[] TierLabelWidths = new float[4];
+        private static bool tierLabelWidthsCached;
+
+        private static readonly Color TierColorT4 = new Color(0.8f, 0.2f, 1f);
+        private static readonly Color TierColorT3 = new Color(1f, 0.3f, 0.3f);
+        private static readonly Color TierColorT2 = new Color(1f, 0.8f, 0.2f);
+        private static readonly Color ShadowColor = new Color(0, 0, 0, 0.8f);
+
+        private static Color GetColorForTier(SettlementTier tier)
         {
             switch (tier)
             {
-                case SettlementTier.T4: return new Color(0.8f, 0.2f, 1f); // Purple/Magenta for T4
-                case SettlementTier.T3: return new Color(1f, 0.3f, 0.3f);
-                case SettlementTier.T2: return new Color(1f, 0.8f, 0.2f);
+                case SettlementTier.T4: return TierColorT4;
+                case SettlementTier.T3: return TierColorT3;
+                case SettlementTier.T2: return TierColorT2;
                 case SettlementTier.T1: return Color.white;
                 default: return Color.gray;
             }

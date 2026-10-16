@@ -267,11 +267,14 @@ namespace WorldDomination
         public void SetState(SettlementTier newTier)
         {
             if (IsOutpost || subType == "Vassal") return;
+            SettlementTier oldTier = tier;
             tier = newTier;
             subType = GetRandomSubType(newTier);
             var range = GetStrengthRange(newTier);
             if (strength <= 0) strength = range.RandomInRange;
             lastRadiusUpdateTick = -9999;
+            if (oldTier != newTier)
+                Find.World?.GetComponent<Text_WorldTierOnSettlements>()?.NotifyTierLabelCacheDirty();
         }
 
         public void AddStrength(float amount)
@@ -305,6 +308,7 @@ namespace WorldDomination
             {
                 subType = GetRandomSubType(tier);
                 lastRadiusUpdateTick = -9999;
+                Find.World?.GetComponent<Text_WorldTierOnSettlements>()?.NotifyTierLabelCacheDirty();
             }
         }
 

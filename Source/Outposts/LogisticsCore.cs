@@ -12,7 +12,55 @@ using TSA_WorldDomination.Settings;
 
 namespace TSA_WorldDomination
 {
-    public enum LogisticsMode { Manual, Equal, FullyFeed, BiggestDeficit }
+    public enum LogisticsMode
+    {
+        Manual = 0,
+        /// <summary>Legacy save/UI value — normalized to <see cref="Smart"/> on load.</summary>
+        Equal = 1,
+        /// <summary>Legacy save/UI value — normalized to <see cref="Smart"/> on load.</summary>
+        FullyFeed = 2,
+        /// <summary>Multi-hub deficit cover, Keep, water-fill.</summary>
+        Smart = 3,
+        /// <summary>Legacy scribe name for <see cref="Smart"/> (same int).</summary>
+        BiggestDeficit = Smart,
+    }
+
+    public static class LogisticsModeUtil
+    {
+        public static bool UsesAutomaticAssignment(LogisticsMode mode) => mode != LogisticsMode.Manual;
+
+        public static bool IsSmartMode(LogisticsMode mode) =>
+            mode == LogisticsMode.Smart
+            || mode == LogisticsMode.BiggestDeficit
+            || mode == LogisticsMode.Equal
+            || mode == LogisticsMode.FullyFeed;
+
+        public static LogisticsMode Normalize(LogisticsMode mode)
+        {
+            if (mode == LogisticsMode.Equal || mode == LogisticsMode.FullyFeed || mode == LogisticsMode.BiggestDeficit)
+                return LogisticsMode.Smart;
+            return mode == LogisticsMode.Manual ? LogisticsMode.Manual : LogisticsMode.Smart;
+        }
+
+        public static string InspectModeLabelKey(LogisticsMode mode)
+        {
+            mode = Normalize(mode);
+            return mode == LogisticsMode.Manual ? null : "TSA_LogisticsMode_" + mode;
+        }
+    }
+
+    [StaticConstructorOnStartup]
+    public static class LogisticsResources
+    {
+        public static readonly Material LogisticsLine =
+            MaterialPool.MatFrom("UI/Overlays/ThingLine", ShaderDatabase.WorldOverlayTransparent, Color.white, 3590);
+
+        public static readonly FieldInfo TicksTillProductionField =
+            typeof(Outpost).GetField("ticksTillProduction", BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
+
+        public static readonly FieldInfo OccupantsField =
+            typeof(Outpost).GetField("occupants", BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
+    }
 
     public class CompProperties_OutpostLogistics : WorldObjectCompProperties
     {
@@ -25,16 +73,18 @@ namespace TSA_WorldDomination
         public const float MaxFood = 100f;
         public float lastNetChange = 0f;
         public LogisticsMode mode = LogisticsMode.Manual;
-
-        // Toggle to determine if this outpost feeds the network or the colony
         public bool produceForLogistics = false;
+
+        private string cachedInspectString;
+        private int cachedInspectTick = -999;
+        private const int InspectCacheInterval = 60;
 
         public override void Initialize(WorldObjectCompProperties props)
         {
             base.Initialize(props);
-            if (parent.def.defName.Contains("Farming") || parent.def.defName.Contains("Hunting"))
+            if (WorldComponent_LogisticsManager.IsFoodProducerOutpost(parent))
             {
-                this.mode = LogisticsMode.FullyFeed;
+                this.mode = LogisticsMode.Smart;
                 this.produceForLogistics = true;
             }
         }
@@ -46,15 +96,27 @@ namespace TSA_WorldDomination
             Scribe_Values.Look(ref lastNetChange, "lastNetChange", 0f);
             Scribe_Values.Look(ref mode, "mode", LogisticsMode.Manual);
             Scribe_Values.Look(ref produceForLogistics, "produceForLogistics", false);
+            if (Scribe.mode == LoadSaveMode.PostLoadInit)
+                mode = LogisticsModeUtil.Normalize(mode);
         }
 
         public override string CompInspectStringExtra()
         {
             if (!WorldDominationMod.settings.foodLogisticsActive) return null;
 
-            string balanceStr = lastNetChange >= 0 ? $"+{lastNetChange:F1}" : $"{lastNetChange:F1}";
-            Color col = lastNetChange > 0.1f ? Color.green : (lastNetChange < -0.1f ? Color.red : Color.yellow);
-            string modeStr = mode == LogisticsMode.Manual ? "" : $" [{("TSA_LogisticsMode_" + mode).Translate()}]";
+            int tick = Find.TickManager?.TicksGame ?? 0;
+            if (cachedInspectString != null && tick - cachedInspectTick < InspectCacheInterval)
+                return cachedInspectString;
+
+            float net = lastNetChange;
+            var manager = Find.World?.GetComponent<WorldComponent_LogisticsManager>();
+            if (manager != null && parent != null)
+                net = manager.GetLogisticsNetDailyForOutpost(parent);
+
+            string balanceStr = net >= 0 ? $"+{net:F1}" : $"{net:F1}";
+            Color col = net > 0.1f ? Color.green : (net < -0.1f ? Color.red : Color.yellow);
+            string modeKey = LogisticsModeUtil.InspectModeLabelKey(mode);
+            string modeStr = modeKey == null ? "" : $" [{modeKey.Translate()}]";
 
             string baseStr = "TSA_FoodSupplyInspect".Translate(
                 currentFood.ToString("F1"),
@@ -65,6 +127,8 @@ namespace TSA_WorldDomination
             if (produceForLogistics)
                 baseStr += "\n" + "TSA_LogisticsActive".Translate().Colorize(Color.cyan);
 
+            cachedInspectString = baseStr;
+            cachedInspectTick = tick;
             return baseStr;
         }
 
@@ -72,49 +136,16 @@ namespace TSA_WorldDomination
         {
             base.PostDrawExtraSelectionOverlays();
 
-            if (parent is Outpost outpost)
-            {
-                var manager = Find.World.GetComponent<WorldComponent_LogisticsManager>();
-                if (manager == null) return;
+            if (!(parent is Outpost outpost)) return;
+            var manager = Find.World.GetComponent<WorldComponent_LogisticsManager>();
+            if (manager == null) return;
+            if (!Find.WorldSelector.IsSelected(outpost)) return;
 
-                bool isSelected = Find.WorldSelector.IsSelected(outpost);
-                bool isProducer = outpost.def.defName.Contains("Farming") || outpost.def.defName.Contains("Hunting");
+            bool isProducer = WorldComponent_LogisticsManager.IsFoodProducerOutpost(outpost);
+            if (isProducer)
+                GenDraw.DrawWorldRadiusRing(outpost.Tile, WorldDominationMod.settings.maxLogisticsRange);
 
-                if (isSelected)
-                {
-                    if (isProducer)
-                    {
-                        var s = WorldDominationMod.settings;
-                        GenDraw.DrawWorldRadiusRing(outpost.Tile, s.maxLogisticsRange);
-                    }
-
-                    // Draw outgoing lines (if producer)
-                    var outgoingLinks = manager.manualLinks.Where(l => l.sourceTile == outpost.Tile && l.manualAssignment > 0.01f);
-                    foreach (var link in outgoingLinks)
-                    {
-                        DrawLogisticsLine(outpost.Tile, link.destTile);
-                    }
-
-                    // Draw incoming lines (if consumer)
-                    var incomingLinks = manager.manualLinks.Where(l => l.destTile == outpost.Tile && l.manualAssignment > 0.01f);
-                    foreach (var link in incomingLinks)
-                    {
-                        DrawLogisticsLine(link.sourceTile, outpost.Tile);
-                    }
-                }
-            }
-        }
-
-        private void DrawLogisticsLine(int startTile, int endTile)
-        {
-            // Simple logic: Use direct tile centers with minimal vertical offset (0.05f)
-            Vector3 sPos = Find.WorldGrid.GetTileCenter(startTile);
-            Vector3 ePos = Find.WorldGrid.GetTileCenter(endTile);
-
-            Vector3 sLift = sPos + sPos.normalized * 0.05f;
-            Vector3 eLift = ePos + ePos.normalized * 0.05f;
-
-            GenDraw.DrawWorldLineBetween(sLift, eLift, MaterialPool.MatFrom("UI/Overlays/ThingLine", ShaderDatabase.WorldOverlayTransparent, Color.white, 3590), 1.00f);
+            manager.DrawSelectionLogisticsLines(outpost.Tile);
         }
 
         public void ConvertInventoryToVirtualFood()
@@ -136,13 +167,10 @@ namespace TSA_WorldDomination
                 float spaceLeft = MaxFood - (currentFood + foodGained);
                 if (spaceLeft < 0.01f) break;
 
-                // Check if it's edible and has nutrition (handles meals, raw food, and modded items)
                 if (t.def.ingestible == null) continue;
                 float nutritionValue = t.def.GetStatValueAbstract(StatDefOf.Nutrition);
                 if (nutritionValue <= 0) continue;
 
-                // Calculate how many items we can fit based on their individual nutrition
-                // Example: 1 Simple Meal (0.9 nut) takes 0.9 units of space.
                 int countToConsume = Mathf.Min(t.stackCount, Mathf.FloorToInt(spaceLeft / nutritionValue));
 
                 if (countToConsume > 0)
@@ -160,9 +188,7 @@ namespace TSA_WorldDomination
             }
 
             foreach (Thing t in toDestroy)
-            {
                 t.Destroy();
-            }
 
             if (foodGained > 0)
             {
@@ -181,21 +207,18 @@ namespace TSA_WorldDomination
     {
         public static IEnumerable<Gizmo> Postfix(IEnumerable<Gizmo> __result, Outpost __instance)
         {
-            // 1. Pass through existing gizmos
             if (__result != null)
             {
                 foreach (var g in __result) yield return g;
             }
 
-            // 2. Gate: Faction and Global Setting
             if (__instance.Faction != Faction.OfPlayer) yield break;
             if (!WorldDominationMod.settings.foodLogisticsActive) yield break;
 
             var logiComp = __instance.GetComponent<CompOutpostLogistics>();
             if (logiComp == null) yield break;
 
-            // 3. Logic: Toggle for Logistics Producers (Farming/Hunting)
-            if (__instance.def.defName.Contains("Farming") || __instance.def.defName.Contains("Hunting"))
+            if (WorldComponent_LogisticsManager.IsFoodProducerOutpost(__instance))
             {
                 yield return new Command_Toggle
                 {
@@ -205,18 +228,16 @@ namespace TSA_WorldDomination
                         ? ContentFinder<Texture2D>.Get("UI/Commands/LogisticsMode")
                         : ContentFinder<Texture2D>.Get("UI/Commands/LogisticsMode_Off"),
                     isActive = () => logiComp.produceForLogistics,
-                    toggleAction = () => {
+                    toggleAction = () =>
+                    {
                         logiComp.produceForLogistics = !logiComp.produceForLogistics;
-                        if (logiComp.mode != LogisticsMode.Manual)
-                        {
-                            var manager = Find.World.GetComponent<WorldComponent_LogisticsManager>();
-                            manager?.ExecuteSmartLogic(__instance, logiComp);
-                        }
+                        var manager = Find.World.GetComponent<WorldComponent_LogisticsManager>();
+                        manager?.NotifyFoodLogisticsInputsChanged();
+                        manager?.CompleteSmartLogisticsRefreshNow();
                     }
                 };
             }
 
-            // 4. Logic: Convert Food Gizmo (Visible on ALL outposts if capacity allows)
             if (logiComp.currentFood < CompOutpostLogistics.MaxFood)
             {
                 yield return new Command_Action
@@ -229,12 +250,12 @@ namespace TSA_WorldDomination
             }
         }
     }
+
     [HarmonyPatch(typeof(Outpost), nameof(Outpost.ProductionString))]
     public static class Patch_Outpost_ProductionString
     {
         public static bool Prefix(Outpost __instance, ref string __result)
         {
-            // SURGICAL FIX: Only hijack the string if logistics are enabled globally
             if (!WorldDominationMod.settings.foodLogisticsActive) return true;
 
             var logi = __instance.GetComponent<CompOutpostLogistics>();
@@ -252,19 +273,36 @@ namespace TSA_WorldDomination
     {
         public static void Prefix(Outpost __instance, ref int delta)
         {
-            // SURGICAL FIX: If logistics are disabled globally, don't freeze production
             if (!WorldDominationMod.settings.foodLogisticsActive) return;
 
             var logi = __instance.GetComponent<CompOutpostLogistics>();
-            if (logi != null && logi.produceForLogistics)
+            if (logi != null && logi.produceForLogistics && LogisticsResources.TicksTillProductionField != null)
             {
-                var ticksField = typeof(Outpost).GetField("ticksTillProduction", BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
-                if (ticksField != null)
-                {
-                    int currentTimer = (int)ticksField.GetValue(__instance);
-                    ticksField.SetValue(__instance, currentTimer + delta);
-                }
+                int currentTimer = (int)LogisticsResources.TicksTillProductionField.GetValue(__instance);
+                LogisticsResources.TicksTillProductionField.SetValue(__instance, currentTimer + delta);
             }
+        }
+    }
+
+    [HarmonyPatch(typeof(WorldObject), nameof(WorldObject.SpawnSetup))]
+    public static class Patch_WorldObject_LogisticsSpawnSetup
+    {
+        public static void Postfix(WorldObject __instance)
+        {
+            if (__instance?.GetComponent<CompOutpostLogistics>() == null) return;
+            Faction player = Faction.OfPlayerSilentFail;
+            if (player == null || __instance.Faction != player) return;
+            Find.World?.GetComponent<WorldComponent_LogisticsManager>()?.NotifyLogisticsTopologyChanged();
+        }
+    }
+
+    [HarmonyPatch(typeof(WorldObject), nameof(WorldObject.PostRemove))]
+    public static class Patch_WorldObject_LogisticsPostRemove
+    {
+        public static void Postfix(WorldObject __instance)
+        {
+            if (__instance?.GetComponent<CompOutpostLogistics>() == null) return;
+            Find.World?.GetComponent<WorldComponent_LogisticsManager>()?.NotifyLogisticsTopologyChanged();
         }
     }
 
@@ -283,11 +321,48 @@ namespace TSA_WorldDomination
             }
         }
 
+        private struct LogisticsCacheEntry
+        {
+            public float DailyProduction;
+            public float DailyDemand;
+            public float NetLogistics;
+        }
+
         public List<LogisticsLink> manualLinks = new List<LogisticsLink>();
         private int nextTick = -1;
         private const int CheckInterval = 6000;
 
+        private readonly List<(WorldObject Obj, CompOutpostLogistics Logi)> playerLogisticsNodesOrdered =
+            new List<(WorldObject, CompOutpostLogistics)>(64);
+        private bool playerLogisticsRegistryDirty = true;
+
+        private int manualLinksMutationVersion;
+        private int manualLinkAggBuiltVersion = -1;
+        private int logisticsCacheGeneration;
+        private int logisticsCacheBuiltGeneration = -1;
+        private Dictionary<int, float> manualOutgoingSumBySourceTile;
+        private Dictionary<int, float> manualIncomingWeightedSumByDestTile;
+        private Dictionary<int, List<int>> manualOutgoingDestsBySourceTile;
+        private Dictionary<int, List<int>> manualIncomingSourcesByDestTile;
+        private Dictionary<int, LogisticsCacheEntry> logisticsCacheByObjectId;
+
+        private int manualLinkNotifySuppressDepth;
+        private bool manualLinkNotifyPendingAfterSuppress;
+
+        private bool smartLogisticsDirty = true;
+        private bool smartDirtyFromExplicitNotify;
+        private long lastSmartCompletedSoftFingerprint = long.MinValue;
+
+        private readonly Dictionary<CompOutpostLogistics, float> pulsePendingChanges =
+            new Dictionary<CompOutpostLogistics, float>(64);
+
+        public int LogisticsNetDisplayGeneration => logisticsCacheGeneration;
+
         public WorldComponent_LogisticsManager(World world) : base(world) { }
+
+        public static bool IsFoodProducerOutpost(WorldObject obj) =>
+            obj?.def?.defName != null
+            && (obj.def.defName.Contains("Farming") || obj.def.defName.Contains("Hunting"));
 
         public override void ExposeData()
         {
@@ -296,10 +371,20 @@ namespace TSA_WorldDomination
             if (manualLinks == null) manualLinks = new List<LogisticsLink>();
         }
 
+        public override void FinalizeInit(bool fromLoad)
+        {
+            base.FinalizeInit(fromLoad);
+            // Dirty only — do not rebuild/reconcile here. Faction.OfPlayer is often unset during world gen / early load
+            // (same as WD2: NotifyLogisticsTopologyChanged marks dirty; rebuild runs on first gameplay access).
+            NotifyLogisticsTopologyChanged();
+        }
+
         public override void WorldComponentTick()
         {
             var s = WorldDominationMod.settings;
-            if (!s.foodLogisticsActive) return;
+            if (s == null || !s.foodLogisticsActive) return;
+
+            TickFoodSettingsSnapshot();
 
             if (Find.TickManager.TicksGame >= nextTick || nextTick == -1)
             {
@@ -308,28 +393,183 @@ namespace TSA_WorldDomination
             }
         }
 
+        private int lastSettingsFingerprint = int.MinValue;
+
+        private void TickFoodSettingsSnapshot()
+        {
+            var s = WorldDominationMod.settings;
+            if (s == null) return;
+            int fp = unchecked(
+                s.maxLogisticsRange
+                ^ (Mathf.RoundToInt(s.foodConsumptionPerPawn * 100f) << 8)
+                ^ (Mathf.RoundToInt(s.foodProductionPerSkill * 100f) << 16)
+                ^ (s.foodLogisticsActive ? 1 : 0));
+            if (lastSettingsFingerprint == int.MinValue)
+            {
+                lastSettingsFingerprint = fp;
+                return;
+            }
+            if (fp != lastSettingsFingerprint)
+            {
+                lastSettingsFingerprint = fp;
+                NotifyFoodLogisticsInputsChanged();
+            }
+        }
+
+        public void NotifyFoodSettingsChanged()
+        {
+            lastSettingsFingerprint = int.MinValue;
+            NotifyFoodLogisticsInputsChanged();
+        }
+
         public float GetEfficiency(int start, int end)
         {
             var s = WorldDominationMod.settings;
             float dist = Find.WorldGrid.ApproxDistanceInTiles(start, end);
-            float max = (float)s.maxLogisticsRange;
-
-            if (dist <= max * 0.6f) return s.effAt60;
-            if (dist <= max * 0.8f) return s.effAt80;
-            if (dist <= max) return s.effAt100;
-
-            return 0f;
+            return dist <= (float)s.maxLogisticsRange ? 1f : 0f;
         }
 
         public float GetDailyProduction(WorldObject obj)
+        {
+            if (obj == null) return 0f;
+            EnsureLogisticsCacheFresh();
+            if (logisticsCacheByObjectId != null && logisticsCacheByObjectId.TryGetValue(obj.ID, out LogisticsCacheEntry e))
+                return e.DailyProduction;
+            return ComputeDailyProductionUncached(obj);
+        }
+
+        public float GetDailyDemand(WorldObject obj)
+        {
+            if (obj == null) return 0f;
+            EnsureLogisticsCacheFresh();
+            if (logisticsCacheByObjectId != null && logisticsCacheByObjectId.TryGetValue(obj.ID, out LogisticsCacheEntry e))
+                return e.DailyDemand;
+            return ComputeDailyDemandUncached(obj);
+        }
+
+        public float GetLogisticsNetDailyForOutpost(WorldObject target)
+        {
+            if (target == null) return 0f;
+            EnsureManualLinkAggregatesFresh();
+            EnsureLogisticsCacheFresh();
+            if (logisticsCacheByObjectId != null && logisticsCacheByObjectId.TryGetValue(target.ID, out LogisticsCacheEntry e))
+                return e.NetLogistics;
+            float incoming = GetIncomingManualWeightedSumForTile(target.Tile);
+            float outgoing = GetOutgoingManualSumForTile(target.Tile);
+            return GetDailyProduction(target) - GetDailyDemand(target) + incoming - outgoing;
+        }
+
+        public float GetOutgoingManualSumForTile(int tile)
+        {
+            EnsureManualLinkAggregatesFresh();
+            if (manualOutgoingSumBySourceTile != null && manualOutgoingSumBySourceTile.TryGetValue(tile, out float v))
+                return v;
+            return 0f;
+        }
+
+        public float GetIncomingManualWeightedSumForTile(int tile)
+        {
+            EnsureManualLinkAggregatesFresh();
+            if (manualIncomingWeightedSumByDestTile != null && manualIncomingWeightedSumByDestTile.TryGetValue(tile, out float v))
+                return v;
+            return 0f;
+        }
+
+        /// <summary>Surplus available to distribute from a hub tile. 0 if not a food producer or produceForLogistics is off.</summary>
+        public float GetDistributionBudgetForSourceTile(int sourceTile)
+        {
+            RebuildPlayerLogisticsRegistryIfNeeded();
+            for (int i = 0; i < playerLogisticsNodesOrdered.Count; i++)
+            {
+                var node = playerLogisticsNodesOrdered[i];
+                if (node.Obj.Tile != sourceTile) continue;
+                if (!IsFoodProducerOutpost(node.Obj) || !node.Logi.produceForLogistics)
+                    return 0f;
+                return Mathf.Max(0f, GetDailyProduction(node.Obj) - GetDailyDemand(node.Obj));
+            }
+            return 0f;
+        }
+
+        public float GetOutgoingManualSumForDirectedLink(int sourceTile, int destTile)
+        {
+            float sum = 0f;
+            for (int i = 0; i < manualLinks.Count; i++)
+            {
+                LogisticsLink l = manualLinks[i];
+                if (l.sourceTile == sourceTile && l.destTile == destTile)
+                    sum += l.manualAssignment;
+            }
+            return sum;
+        }
+
+        public void MergeDuplicateManualLinksFromSource(int sourceTile)
+        {
+            var byDest = new Dictionary<int, List<LogisticsLink>>();
+            for (int i = 0; i < manualLinks.Count; i++)
+            {
+                var l = manualLinks[i];
+                if (l.sourceTile != sourceTile) continue;
+                if (!byDest.TryGetValue(l.destTile, out var list))
+                {
+                    list = new List<LogisticsLink>(2);
+                    byDest[l.destTile] = list;
+                }
+                list.Add(l);
+            }
+            bool changed = false;
+            foreach (var kv in byDest)
+            {
+                var list = kv.Value;
+                if (list.Count < 2) continue;
+                float sum = 0f;
+                for (int i = 0; i < list.Count; i++)
+                    sum += list[i].manualAssignment;
+                list[0].manualAssignment = sum;
+                for (int i = 1; i < list.Count; i++)
+                    manualLinks.Remove(list[i]);
+                changed = true;
+            }
+            if (changed)
+                NotifyManualLinksChanged();
+        }
+
+        public bool ClampManualAssignmentsForSourceBudget(int sourceTile)
+        {
+            MergeDuplicateManualLinksFromSource(sourceTile);
+            float budget = GetDistributionBudgetForSourceTile(sourceTile);
+            float total = GetOutgoingManualSumForTile(sourceTile);
+            if (total <= budget + 0.001f) return false;
+
+            float remaining = budget;
+            bool changed = false;
+            for (int i = 0; i < manualLinks.Count; i++)
+            {
+                LogisticsLink link = manualLinks[i];
+                if (link.sourceTile != sourceTile || link.manualAssignment <= 0f) continue;
+
+                float clamped = Mathf.Min(link.manualAssignment, remaining);
+                clamped = (float)Math.Round(clamped, 1);
+                if (clamped > remaining) clamped = remaining;
+                if (Mathf.Abs(link.manualAssignment - clamped) > 0.0001f)
+                {
+                    link.manualAssignment = Mathf.Max(0f, clamped);
+                    changed = true;
+                }
+                remaining = Mathf.Max(0f, remaining - link.manualAssignment);
+            }
+            if (changed)
+                NotifyManualLinksChanged();
+            return changed;
+        }
+
+        private float ComputeDailyProductionUncached(WorldObject obj)
         {
             var s = WorldDominationMod.settings;
             if (!(obj is Outpost op)) return s.foodConsumptionPerPawn * 2f;
 
             float production = s.foodConsumptionPerPawn * 2f;
 
-            bool isFoodProducer = op.def.defName.Contains("Farming") || op.def.defName.Contains("Hunting");
-            if (isFoodProducer)
+            if (IsFoodProducerOutpost(op))
             {
                 float totalSkill = 0f;
                 foreach (Pawn pawn in op.AllPawns)
@@ -346,152 +586,412 @@ namespace TSA_WorldDomination
             return production;
         }
 
-        public float GetDailyDemand(WorldObject obj)
+        private float ComputeDailyDemandUncached(WorldObject obj)
         {
             var s = WorldDominationMod.settings;
             float count = 0f;
             if (obj is MapParent mapParent && mapParent.HasMap) count = (float)mapParent.Map.mapPawns.AllPawnsCount;
             else if (obj is Outpost outpost) count = (float)outpost.AllPawns.Count();
-
             return count * s.foodConsumptionPerPawn;
+        }
+
+        private void BumpManualLinkStructureVersionImmediate()
+        {
+            manualLinksMutationVersion++;
+            logisticsCacheGeneration++;
+            manualLinkAggBuiltVersion = -1;
+            logisticsCacheBuiltGeneration = -1;
+        }
+
+        public void NotifyManualLinksChanged()
+        {
+            if (manualLinkNotifySuppressDepth > 0)
+            {
+                manualLinkNotifyPendingAfterSuppress = true;
+                manualLinkAggBuiltVersion = -1;
+                logisticsCacheBuiltGeneration = -1;
+                return;
+            }
+            BumpManualLinkStructureVersionImmediate();
+        }
+
+        public void InvalidateLogisticsNumericCaches()
+        {
+            manualLinkAggBuiltVersion = -1;
+            logisticsCacheBuiltGeneration = -1;
+        }
+
+        public void BeginManualLinkNotifySuppress() => manualLinkNotifySuppressDepth++;
+
+        public void EndManualLinkNotifySuppress()
+        {
+            manualLinkNotifySuppressDepth--;
+            if (manualLinkNotifySuppressDepth < 0) manualLinkNotifySuppressDepth = 0;
+            if (manualLinkNotifySuppressDepth == 0 && manualLinkNotifyPendingAfterSuppress)
+            {
+                manualLinkNotifyPendingAfterSuppress = false;
+                BumpManualLinkStructureVersionImmediate();
+            }
+        }
+
+        public void BumpLogisticsDataVersion() => logisticsCacheGeneration++;
+
+        public void NotifyFoodLogisticsInputsChanged()
+        {
+            BumpLogisticsDataVersion();
+            NotifySmartLogisticsDirty();
+        }
+
+        public void NotifyLogisticsTopologyChanged()
+        {
+            // WD2 pattern: mark dirty only. Eager rebuild here races world gen (no player faction yet).
+            playerLogisticsRegistryDirty = true;
+            logisticsCacheGeneration++;
+            NotifySmartLogisticsDirty();
+        }
+
+        public void NotifySmartLogisticsDirty()
+        {
+            smartLogisticsDirty = true;
+            smartDirtyFromExplicitNotify = true;
+        }
+
+        private void PruneOrphanManualLinksAfterRebuild()
+        {
+            var live = new HashSet<int>();
+            for (int i = 0; i < playerLogisticsNodesOrdered.Count; i++)
+                live.Add(playerLogisticsNodesOrdered[i].Obj.Tile);
+            int removed = manualLinks.RemoveAll(l => !live.Contains(l.sourceTile) || !live.Contains(l.destTile));
+            if (removed > 0)
+                NotifyManualLinksChanged();
+        }
+
+        private bool RebuildPlayerLogisticsRegistryIfNeeded()
+        {
+            if (!playerLogisticsRegistryDirty) return false;
+
+            Faction player = Faction.OfPlayerSilentFail;
+            if (player == null)
+            {
+                // Keep dirty so we rebuild once gameplay has a player faction.
+                return false;
+            }
+
+            playerLogisticsNodesOrdered.Clear();
+            if (Find.WorldObjects == null)
+            {
+                playerLogisticsRegistryDirty = false;
+                return true;
+            }
+            var all = Find.WorldObjects.AllWorldObjects;
+            for (int i = 0; i < all.Count; i++)
+            {
+                var wo = all[i];
+                if (wo == null || wo.Destroyed || wo.Faction != player) continue;
+                var logi = wo.GetComponent<CompOutpostLogistics>();
+                if (logi == null) continue;
+                logi.mode = LogisticsModeUtil.Normalize(logi.mode);
+                playerLogisticsNodesOrdered.Add((wo, logi));
+            }
+            playerLogisticsNodesOrdered.Sort((a, b) => a.Obj.ID.CompareTo(b.Obj.ID));
+            playerLogisticsRegistryDirty = false;
+            PruneOrphanManualLinksAfterRebuild();
+            return true;
+        }
+
+        public IReadOnlyList<(WorldObject Obj, CompOutpostLogistics Logi)> GetCachedPlayerLogisticsNodes()
+        {
+            RebuildPlayerLogisticsRegistryIfNeeded();
+            return playerLogisticsNodesOrdered;
+        }
+
+        private void EnsureManualLinkAggregatesFresh()
+        {
+            if (manualLinkAggBuiltVersion == manualLinksMutationVersion && manualOutgoingSumBySourceTile != null)
+                return;
+            manualLinkAggBuiltVersion = manualLinksMutationVersion;
+            manualOutgoingSumBySourceTile ??= new Dictionary<int, float>();
+            manualOutgoingSumBySourceTile.Clear();
+            manualIncomingWeightedSumByDestTile ??= new Dictionary<int, float>();
+            manualIncomingWeightedSumByDestTile.Clear();
+            manualOutgoingDestsBySourceTile ??= new Dictionary<int, List<int>>();
+            ClearDrawIndexLists(manualOutgoingDestsBySourceTile);
+            manualIncomingSourcesByDestTile ??= new Dictionary<int, List<int>>();
+            ClearDrawIndexLists(manualIncomingSourcesByDestTile);
+
+            for (int i = 0; i < manualLinks.Count; i++)
+            {
+                LogisticsLink l = manualLinks[i];
+                if (manualOutgoingSumBySourceTile.TryGetValue(l.sourceTile, out float o))
+                    manualOutgoingSumBySourceTile[l.sourceTile] = o + l.manualAssignment;
+                else
+                    manualOutgoingSumBySourceTile[l.sourceTile] = l.manualAssignment;
+
+                float weighted = l.manualAssignment * GetEfficiency(l.sourceTile, l.destTile);
+                if (manualIncomingWeightedSumByDestTile.TryGetValue(l.destTile, out float inc))
+                    manualIncomingWeightedSumByDestTile[l.destTile] = inc + weighted;
+                else
+                    manualIncomingWeightedSumByDestTile[l.destTile] = weighted;
+
+                if (l.manualAssignment > 0.01f)
+                {
+                    if (!manualOutgoingDestsBySourceTile.TryGetValue(l.sourceTile, out var outs))
+                    {
+                        outs = new List<int>(4);
+                        manualOutgoingDestsBySourceTile[l.sourceTile] = outs;
+                    }
+                    outs.Add(l.destTile);
+
+                    if (!manualIncomingSourcesByDestTile.TryGetValue(l.destTile, out var ins))
+                    {
+                        ins = new List<int>(4);
+                        manualIncomingSourcesByDestTile[l.destTile] = ins;
+                    }
+                    ins.Add(l.sourceTile);
+                }
+            }
+        }
+
+        private static void ClearDrawIndexLists(Dictionary<int, List<int>> dict)
+        {
+            foreach (var kv in dict)
+                kv.Value.Clear();
+            dict.Clear();
+        }
+
+        private void RebuildLogisticsCacheEager()
+        {
+            RebuildPlayerLogisticsRegistryIfNeeded();
+            EnsureManualLinkAggregatesFresh();
+            logisticsCacheByObjectId ??= new Dictionary<int, LogisticsCacheEntry>();
+            logisticsCacheByObjectId.Clear();
+            for (int i = 0; i < playerLogisticsNodesOrdered.Count; i++)
+            {
+                var wo = playerLogisticsNodesOrdered[i].Obj;
+                float prod = ComputeDailyProductionUncached(wo);
+                float dem = ComputeDailyDemandUncached(wo);
+                float inc = GetIncomingManualWeightedSumForTile(wo.Tile);
+                float outg = GetOutgoingManualSumForTile(wo.Tile);
+                logisticsCacheByObjectId[wo.ID] = new LogisticsCacheEntry
+                {
+                    DailyProduction = prod,
+                    DailyDemand = dem,
+                    NetLogistics = prod - dem + inc - outg
+                };
+            }
+            logisticsCacheBuiltGeneration = logisticsCacheGeneration;
+        }
+
+        private void EnsureLogisticsCacheFresh()
+        {
+            if (logisticsCacheBuiltGeneration == logisticsCacheGeneration) return;
+            RebuildLogisticsCacheEager();
+        }
+
+        public void DrawSelectionLogisticsLines(int tile)
+        {
+            EnsureManualLinkAggregatesFresh();
+            if (manualOutgoingDestsBySourceTile != null && manualOutgoingDestsBySourceTile.TryGetValue(tile, out var outs))
+            {
+                for (int i = 0; i < outs.Count; i++)
+                    DrawLogisticsLine(tile, outs[i]);
+            }
+            if (manualIncomingSourcesByDestTile != null && manualIncomingSourcesByDestTile.TryGetValue(tile, out var ins))
+            {
+                for (int i = 0; i < ins.Count; i++)
+                    DrawLogisticsLine(ins[i], tile);
+            }
+        }
+
+        private static void DrawLogisticsLine(int startTile, int endTile)
+        {
+            Vector3 sPos = Find.WorldGrid.GetTileCenter(startTile);
+            Vector3 ePos = Find.WorldGrid.GetTileCenter(endTile);
+            Vector3 sLift = sPos + sPos.normalized * 0.05f;
+            Vector3 eLift = ePos + ePos.normalized * 0.05f;
+            GenDraw.DrawWorldLineBetween(sLift, eLift, LogisticsResources.LogisticsLine, 1.00f);
+        }
+
+        public void CompleteSmartLogisticsRefreshNow()
+        {
+            if (!smartLogisticsDirty) return;
+
+            RebuildPlayerLogisticsRegistryIfNeeded();
+            var list = new List<(WorldObject Obj, CompOutpostLogistics Logi)>();
+            for (int i = 0; i < playerLogisticsNodesOrdered.Count; i++)
+            {
+                var pair = playerLogisticsNodesOrdered[i];
+                if (LogisticsModeUtil.UsesAutomaticAssignment(pair.Logi.mode))
+                    list.Add(pair);
+            }
+            list.Sort((a, b) => a.Obj.ID.CompareTo(b.Obj.ID));
+            BeginManualLinkNotifySuppress();
+            try
+            {
+                LogisticsSmartAssignment.ExecuteAllSmartHubs(this, list);
+            }
+            finally
+            {
+                EndManualLinkNotifySuppress();
+            }
+
+            smartLogisticsDirty = false;
+            smartDirtyFromExplicitNotify = false;
+            lastSmartCompletedSoftFingerprint = ComputeSmartSoftFingerprint();
+        }
+
+        public void TryReconcileSmartFromFingerprint(string reason)
+        {
+            if (!AnySmartHub()) return;
+
+            long soft = ComputeSmartSoftFingerprint();
+            if (soft == lastSmartCompletedSoftFingerprint)
+                return;
+
+            smartLogisticsDirty = true;
+            CompleteSmartLogisticsRefreshNow();
+        }
+
+        private bool AnySmartHub()
+        {
+            RebuildPlayerLogisticsRegistryIfNeeded();
+            for (int i = 0; i < playerLogisticsNodesOrdered.Count; i++)
+            {
+                if (LogisticsModeUtil.UsesAutomaticAssignment(playerLogisticsNodesOrdered[i].Logi.mode))
+                    return true;
+            }
+            return false;
+        }
+
+        private long ComputeSmartSoftFingerprint()
+        {
+            RebuildPlayerLogisticsRegistryIfNeeded();
+            EnsureLogisticsCacheFresh();
+            var s = WorldDominationMod.settings;
+            int hubCount = 0;
+            int prodCount = 0;
+            int pawnPacked = 0;
+            int modePacked = 0;
+            int surplusPacked = 0;
+            for (int i = 0; i < playerLogisticsNodesOrdered.Count; i++)
+            {
+                var pair = playerLogisticsNodesOrdered[i];
+                var wo = pair.Obj;
+                hubCount++;
+                if (IsFoodProducerOutpost(wo))
+                {
+                    prodCount++;
+                    float surplus = pair.Logi.produceForLogistics
+                        ? Mathf.Max(0f, GetDailyProduction(wo) - GetDailyDemand(wo))
+                        : 0f;
+                    surplusPacked = unchecked(surplusPacked + wo.ID * 31 + Mathf.RoundToInt(surplus * 10f));
+                }
+                if (wo is Outpost op)
+                    pawnPacked = unchecked(pawnPacked + op.AllPawns.Count() * 397 + wo.ID);
+                if (LogisticsModeUtil.UsesAutomaticAssignment(pair.Logi.mode))
+                    modePacked ^= wo.ID * 17 + (int)LogisticsModeUtil.Normalize(pair.Logi.mode) * 31 + (pair.Logi.produceForLogistics ? 13 : 0);
+            }
+            int settingsPacked = s == null ? 0 : unchecked(
+                s.maxLogisticsRange
+                ^ (Mathf.RoundToInt(s.foodConsumptionPerPawn * 100f) << 8)
+                ^ (Mathf.RoundToInt(s.foodProductionPerSkill * 100f) << 16));
+            unchecked
+            {
+                return (uint)hubCount ^ ((long)prodCount << 16) ^ pawnPacked ^ modePacked ^ ((long)surplusPacked << 8) ^ settingsPacked;
+            }
         }
 
         private void RunLogisticsPulse()
         {
-            var nodes = Find.WorldObjects.AllWorldObjects
-                .Where(x => x.Faction == Faction.OfPlayer)
-                .Select(x => new { Obj = x, Logi = x.GetComponent<CompOutpostLogistics>() })
-                .Where(x => x.Logi != null).ToList();
+            TryReconcileSmartFromFingerprint("food accounting pulse");
 
-            foreach (var node in nodes.Where(n => n.Logi.mode != LogisticsMode.Manual))
+            RebuildPlayerLogisticsRegistryIfNeeded();
+            EnsureLogisticsCacheFresh();
+            var nodes = playerLogisticsNodesOrdered;
+
+            pulsePendingChanges.Clear();
+            for (int i = 0; i < nodes.Count; i++)
             {
-                ExecuteSmartLogic(node.Obj, node.Logi);
+                float prod = GetDailyProduction(nodes[i].Obj);
+                float dem = GetDailyDemand(nodes[i].Obj);
+                pulsePendingChanges[nodes[i].Logi] = prod - dem;
             }
 
-            Dictionary<CompOutpostLogistics, float> pendingChanges = new Dictionary<CompOutpostLogistics, float>();
-            foreach (var node in nodes) pendingChanges[node.Logi] = GetDailyProduction(node.Obj) - GetDailyDemand(node.Obj);
-
-            foreach (var hub in nodes.Where(x => (x.Obj.def.defName.Contains("Farming") || x.Obj.def.defName.Contains("Hunting")) && x.Logi.produceForLogistics))
+            // Shipments only from Farming/Hunting hubs with produceForLogistics (WD1 VOE rule).
+            for (int hi = 0; hi < nodes.Count; hi++)
             {
-                foreach (var link in manualLinks.Where(l => l.sourceTile == hub.Obj.Tile))
+                var hub = nodes[hi];
+                if (!IsFoodProducerOutpost(hub.Obj) || !hub.Logi.produceForLogistics) continue;
+                int hubTile = hub.Obj.Tile;
+                for (int li = 0; li < manualLinks.Count; li++)
                 {
-                    var consumer = nodes.FirstOrDefault(c => c.Obj.Tile == link.destTile);
-                    if (consumer == null) continue;
-                    float eff = GetEfficiency(hub.Obj.Tile, consumer.Obj.Tile);
-
-                    pendingChanges[hub.Logi] -= link.manualAssignment;
-                    pendingChanges[consumer.Logi] += (link.manualAssignment * eff);
+                    LogisticsLink link = manualLinks[li];
+                    if (link.sourceTile != hubTile || link.manualAssignment <= 0.001f) continue;
+                    pulsePendingChanges[hub.Logi] -= link.manualAssignment;
+                    float eff = GetEfficiency(hubTile, link.destTile);
+                    if (eff <= 0f) continue;
+                    for (int ci = 0; ci < nodes.Count; ci++)
+                    {
+                        if (nodes[ci].Obj.Tile != link.destTile) continue;
+                        pulsePendingChanges[nodes[ci].Logi] += link.manualAssignment * eff;
+                        break;
+                    }
                 }
             }
 
-            foreach (var node in nodes)
+            for (int i = 0; i < nodes.Count; i++)
             {
-                node.Logi.lastNetChange = pendingChanges[node.Logi];
+                var node = nodes[i];
+                node.Logi.lastNetChange = pulsePendingChanges[node.Logi];
                 node.Logi.currentFood = Mathf.Clamp(node.Logi.currentFood + (node.Logi.lastNetChange * 0.5f), 0, 100f);
             }
 
-            foreach (var node in nodes)
+            for (int i = 0; i < nodes.Count; i++)
             {
-                if (node.Logi.currentFood <= 0.001f && GetDailyDemand(node.Obj) > 0 && node.Obj is Outpost op)
-                {
-                    var occupants = typeof(Outpost).GetField("occupants", BindingFlags.Instance | BindingFlags.NonPublic)?.GetValue(op) as List<Pawn>;
-                    if (occupants?.Count > 0)
-                    {
-                        Pawn v = occupants.RandomElement();
-                        v.Kill(null);
-                        occupants.Remove(v);
-                        Find.LetterStack.ReceiveLetter("TSA_StarvationTitle".Translate(), "TSA_StarvationDesc".Translate(v.LabelShort, op.LabelCap), LetterDefOf.Death, op);
-                    }
-                }
+                var node = nodes[i];
+                if (node.Logi.currentFood > 0.001f || GetDailyDemand(node.Obj) <= 0) continue;
+                if (!(node.Obj is Outpost op)) continue;
+                var occupants = LogisticsResources.OccupantsField?.GetValue(op) as List<Pawn>;
+                if (occupants == null || occupants.Count == 0) continue;
+                Pawn v = occupants.RandomElement();
+                v.Kill(null);
+                occupants.Remove(v);
+                Find.LetterStack.ReceiveLetter("TSA_StarvationTitle".Translate(), "TSA_StarvationDesc".Translate(v.LabelShort, op.LabelCap), LetterDefOf.Death, op);
+                NotifyFoodLogisticsInputsChanged();
             }
         }
 
         public void ExecuteSmartLogic(WorldObject hub, CompOutpostLogistics logi)
         {
-            var s = WorldDominationMod.settings;
-            float budget = logi.produceForLogistics ? Mathf.Max(0, GetDailyProduction(hub) - GetDailyDemand(hub)) : 0f;
-
-            var links = manualLinks.Where(l => l.sourceTile == hub.Tile).ToList();
-            foreach (var l in links) l.manualAssignment = 0;
-
-            var allNearby = Find.WorldObjects.AllWorldObjects
-                .Where(o => o.Faction == Faction.OfPlayer && o != hub && o.GetComponent<CompOutpostLogistics>() != null
-                       && Find.WorldGrid.ApproxDistanceInTiles(hub.Tile, o.Tile) <= s.maxLogisticsRange)
-                .Select(o => new { Obj = o, Logi = o.GetComponent<CompOutpostLogistics>(), Def = GetDailyProduction(o) - GetDailyDemand(o) })
-                .ToList();
-
-            if (!allNearby.Any() || budget <= 0) return;
-
-            var deficitTargets = allNearby.Where(x => x.Def < -0.1f).ToList();
-            if (deficitTargets.Any())
-            {
-                switch (logi.mode)
-                {
-                    case LogisticsMode.Equal:
-                        float perOutpost = budget / deficitTargets.Count;
-                        foreach (var t in deficitTargets) SetAssignment(hub.Tile, t.Obj.Tile, perOutpost);
-                        budget = 0;
-                        break;
-
-                    case LogisticsMode.FullyFeed:
-                        foreach (var t in deficitTargets.OrderByDescending(x => x.Def))
-                        {
-                            float eff = GetEfficiency(hub.Tile, t.Obj.Tile);
-                            if (eff <= 0) continue;
-                            float needed = (Mathf.Abs(t.Def) + 0.1f) / eff;
-                            if (budget >= needed) { SetAssignment(hub.Tile, t.Obj.Tile, needed); budget -= needed; }
-                        }
-                        foreach (var t in deficitTargets.OrderBy(x => x.Def))
-                        {
-                            if (budget <= 0.05f) break;
-                            var currentLink = manualLinks.FirstOrDefault(l => l.sourceTile == hub.Tile && l.destTile == t.Obj.Tile);
-                            float assigned = currentLink?.manualAssignment ?? 0f;
-                            float eff = GetEfficiency(hub.Tile, t.Obj.Tile);
-                            if (eff <= 0) continue;
-                            float cap = (Mathf.Abs(t.Def) + 0.1f) / eff;
-                            float canTake = Mathf.Max(0, cap - assigned);
-                            float toGive = Mathf.Min(budget, canTake);
-                            SetAssignment(hub.Tile, t.Obj.Tile, assigned + toGive);
-                            budget -= toGive;
-                        }
-                        break;
-
-                    case LogisticsMode.BiggestDeficit:
-                        foreach (var t in deficitTargets.OrderBy(x => x.Def))
-                        {
-                            if (budget <= 0.05f) break;
-                            float eff = GetEfficiency(hub.Tile, t.Obj.Tile);
-                            if (eff <= 0) continue;
-                            float needed = (Mathf.Abs(t.Def) + 0.1f) / eff;
-                            float toGive = Mathf.Min(needed, budget);
-                            SetAssignment(hub.Tile, t.Obj.Tile, toGive);
-                            budget -= toGive;
-                        }
-                        break;
-                }
-            }
-
-            if (budget > 0.1f)
-            {
-                foreach (var t in allNearby.OrderBy(x => x.Logi.currentFood))
-                {
-                    if (budget <= 0.05f) break;
-                    float eff = GetEfficiency(hub.Tile, t.Obj.Tile);
-                    if (eff <= 0) continue;
-
-                    float currentAssignment = manualLinks.FirstOrDefault(l => l.sourceTile == hub.Tile && l.destTile == t.Obj.Tile)?.manualAssignment ?? 0f;
-                    float toSend = budget;
-                    SetAssignment(hub.Tile, t.Obj.Tile, currentAssignment + toSend);
-                    budget -= toSend;
-                }
-            }
+            NotifySmartLogisticsDirty();
+            CompleteSmartLogisticsRefreshNow();
         }
 
-        private void SetAssignment(int src, int dst, float amt)
+        public bool SetAssignment(int src, int dst, float amt, bool markSmartDirty = false)
         {
-            var link = manualLinks.FirstOrDefault(l => l.sourceTile == src && l.destTile == dst);
-            if (link == null) manualLinks.Add(new LogisticsLink { sourceTile = src, destTile = dst, manualAssignment = amt });
-            else link.manualAssignment = amt;
+            const float eps = 0.01f;
+            LogisticsLink link = null;
+            for (int i = 0; i < manualLinks.Count; i++)
+            {
+                if (manualLinks[i].sourceTile == src && manualLinks[i].destTile == dst)
+                {
+                    link = manualLinks[i];
+                    break;
+                }
+            }
+            if (link == null)
+            {
+                if (amt <= eps) return false;
+                manualLinks.Add(new LogisticsLink { sourceTile = src, destTile = dst, manualAssignment = amt });
+                NotifyManualLinksChanged();
+                if (markSmartDirty) NotifySmartLogisticsDirty();
+                return true;
+            }
+            if (Mathf.Abs(link.manualAssignment - amt) <= eps) return false;
+            link.manualAssignment = amt;
+            NotifyManualLinksChanged();
+            if (markSmartDirty) NotifySmartLogisticsDirty();
+            return true;
         }
     }
 }

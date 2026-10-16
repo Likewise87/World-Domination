@@ -1,6 +1,8 @@
 ﻿using HarmonyLib;
 using Outposts;
+using Verse;
 using WorldDomination;
+using TSA_WorldDomination;
 
 namespace TSA_WorldDomination.HarmonyPatches
 {
@@ -19,6 +21,7 @@ namespace TSA_WorldDomination.HarmonyPatches
             {
                 var comp = __instance.GetComponent<CompViralSpread>();
                 comp?.UpdateOutpostStrengthLogically();
+                Find.World?.GetComponent<WorldComponent_LogisticsManager>()?.NotifyFoodLogisticsInputsChanged();
             }
         }
     }
@@ -32,6 +35,7 @@ namespace TSA_WorldDomination.HarmonyPatches
             // Triggered whenever a pawn is removed from the roster (manually or via death/transfer)
             var comp = __instance.GetComponent<CompViralSpread>();
             comp?.UpdateOutpostStrengthLogically();
+            Find.World?.GetComponent<WorldComponent_LogisticsManager>()?.NotifyFoodLogisticsInputsChanged();
         }
     }
 }

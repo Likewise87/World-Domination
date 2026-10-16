@@ -1,92 +1,99 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using RimWorld.Planet;
 using UnityEngine;
 using Verse;
-using Outposts;
 using TSA_WorldDomination;
 using TSA_WorldDomination.Settings;
+using Event = UnityEngine.Event;
+using EventType = UnityEngine.EventType;
 
 namespace WorldDomination
 {
     public class WorldLogisticsVisualizer : WorldComponent
     {
+        private int cachedNetGeneration = int.MinValue;
+        private readonly Dictionary<int, string> netLabelByObjectId = new Dictionary<int, string>(64);
+        private readonly Dictionary<int, Color> netColorByObjectId = new Dictionary<int, Color>(64);
+        private readonly Dictionary<long, string> foodLabelByKey = new Dictionary<long, string>(64);
+
+        private static readonly Color ShadowColor = new Color(0, 0, 0, 0.7f);
+
         public WorldLogisticsVisualizer(World world) : base(world) { }
 
         public override void WorldComponentOnGUI()
         {
             base.WorldComponentOnGUI();
 
-            // 1. Context & Global Toggle Check
-            // Gated behind both the mod settings and the world-map UI toggle
             if (Current.ProgramState != ProgramState.Playing || !WorldRendererUtility.WorldRendered) return;
             if (!WorldComponent_WDVisualizerToggle.ShowVisuals) return;
             if (WorldDominationMod.settings == null || !WorldDominationMod.settings.foodLogisticsActive) return;
 
-            // 2. Zoom Check: Hide if zoomed out too far
+            if (Event.current.type != EventType.Repaint) return;
+
             if (Find.WorldCameraDriver.AltitudePercent > 0.08f) return;
 
             var manager = Find.World.GetComponent<WorldComponent_LogisticsManager>();
             if (manager == null) return;
 
-            foreach (WorldObject worldObject in Find.WorldObjects.AllWorldObjects)
+            var nodes = manager.GetCachedPlayerLogisticsNodes();
+            if (nodes.Count == 0) return;
+
+            if (cachedNetGeneration != manager.LogisticsNetDisplayGeneration)
             {
-                // Only target player-owned outposts with the logistics component
-                if (worldObject.Faction == null || !worldObject.Faction.IsPlayer) continue;
+                cachedNetGeneration = manager.LogisticsNetDisplayGeneration;
+                netLabelByObjectId.Clear();
+                netColorByObjectId.Clear();
+            }
 
-                CompOutpostLogistics logi = worldObject.GetComponent<CompOutpostLogistics>();
-                if (logi == null) continue;
+            Text.Font = GameFont.Tiny;
+            Text.Anchor = TextAnchor.MiddleCenter;
 
-                // Occlusion check (don't draw if behind the planet)
-                if (WorldObjectSelectionUtility.HiddenBehindTerrainNow(worldObject)) continue;
+            for (int i = 0; i < nodes.Count; i++)
+            {
+                var worldObject = nodes[i].Obj;
+                var logi = nodes[i].Logi;
+                if (worldObject == null || worldObject.Destroyed || logi == null) continue;
+                if (!WorldObjectSelectionUtility.VisibleToCameraNow(worldObject)) continue;
 
-                // --- LOGIC CALCULATIONS ---
-                float prod = manager.GetDailyProduction(worldObject);
-                float cons = manager.GetDailyDemand(worldObject);
-                float netBase = prod - cons;
+                if (!netLabelByObjectId.TryGetValue(worldObject.ID, out string netLabel))
+                {
+                    float totalNet = manager.GetLogisticsNetDailyForOutpost(worldObject);
+                    string netSign = totalNet >= 0 ? "+" : "";
+                    netLabel = $"{netSign}{totalNet:F1}";
+                    netLabelByObjectId[worldObject.ID] = netLabel;
+                    netColorByObjectId[worldObject.ID] = totalNet > 0.1f ? Color.green : (totalNet < -0.1f ? Color.red : Color.yellow);
+                }
 
-                // Calculate real-time transfers
-                float outgoing = manager.manualLinks.Where(l => l.sourceTile == worldObject.Tile).Sum(l => l.manualAssignment);
-                float incoming = manager.manualLinks.Where(l => l.destTile == worldObject.Tile).Sum(l => l.manualAssignment * manager.GetEfficiency(l.sourceTile, l.destTile));
-
-                float totalNet = netBase + incoming - outgoing;
-
-                // --- UI PREPARATION ---
-                Vector2 screenPos = WorldObjectSelectionUtility.ScreenPos(worldObject);
-                Text.Font = GameFont.Tiny;
-                Text.Anchor = TextAnchor.MiddleCenter;
-
-                // Top Line: Deficit/Surplus
-                string netSign = totalNet >= 0 ? "+" : "";
-                string netLabel = $"{netSign}{totalNet:F1}";
-                Color netColor = totalNet > 0.1f ? Color.green : (totalNet < -0.1f ? Color.red : Color.yellow);
-
-                // Bottom Line: Current Food
-                string foodLabel = $"{logi.currentFood:F0}/100";
+                int foodRounded = Mathf.RoundToInt(logi.currentFood);
+                long foodKey = ((long)worldObject.ID << 32) ^ (uint)foodRounded;
+                if (!foodLabelByKey.TryGetValue(foodKey, out string foodLabel))
+                {
+                    foodLabel = $"{foodRounded}/100";
+                    foodLabelByKey[foodKey] = foodLabel;
+                    if (foodLabelByKey.Count > 512)
+                        foodLabelByKey.Clear();
+                }
                 Color foodColor = logi.currentFood <= 20f ? Color.red : (logi.currentFood <= 50f ? Color.yellow : Color.white);
+                Color netColor = netColorByObjectId[worldObject.ID];
 
-                // --- DRAWING ---
+                Vector2 screenPos = WorldObjectSelectionUtility.ScreenPos(worldObject);
                 float yOffset = -45f;
                 Rect netRect = new Rect(screenPos.x - 50f, screenPos.y + yOffset, 100f, 20f);
                 Rect foodRect = new Rect(screenPos.x - 50f, screenPos.y + yOffset + 12f, 100f, 20f);
 
-                // Shadow Pass
-                GUI.color = new Color(0, 0, 0, 0.7f);
+                GUI.color = ShadowColor;
                 Widgets.Label(new Rect(netRect.x + 1f, netRect.y + 1f, netRect.width, netRect.height), netLabel);
                 Widgets.Label(new Rect(foodRect.x + 1f, foodRect.y + 1f, foodRect.width, foodRect.height), foodLabel);
 
-                // Main Label Pass
                 GUI.color = netColor;
                 Widgets.Label(netRect, netLabel);
                 GUI.color = foodColor;
                 Widgets.Label(foodRect, foodLabel);
-
-                // Cleanup
-                GUI.color = Color.white;
-                Text.Anchor = TextAnchor.UpperLeft;
-                Text.Font = GameFont.Small;
             }
+
+            GUI.color = Color.white;
+            Text.Anchor = TextAnchor.UpperLeft;
+            Text.Font = GameFont.Small;
         }
     }
 }

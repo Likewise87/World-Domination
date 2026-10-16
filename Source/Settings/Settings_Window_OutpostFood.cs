@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using Verse;
+using TSA_WorldDomination;
 
 namespace TSA_WorldDomination.Settings
 {
@@ -13,6 +14,12 @@ namespace TSA_WorldDomination.Settings
             doCloseButton = true;
             forcePause = true;
             closeOnClickedOutside = true;
+        }
+
+        public override void PreClose()
+        {
+            base.PreClose();
+            Find.World?.GetComponent<WorldComponent_LogisticsManager>()?.NotifyFoodSettingsChanged();
         }
 
         public override void DoWindowContents(Rect inRect)
@@ -45,24 +52,17 @@ namespace TSA_WorldDomination.Settings
                     "TSA_WD_Food_MaxRange".Translate(), s.maxLogisticsRange, 5f, 50f,
                     "TSA_WD_Food_MaxRangeTooltip".Translate(), 1f, SliderFormat.Fixed0);
 
-                // --- EFFICIENCY FALLOFF ---
-                l.Gap(10f);
-                l.Label("TSA_WD_Food_EffTitle".Translate() + ":");
-
-                // Using the MultiColumnSlider from your library for the 3 percentage steps
-                string[] labels = { "60%", "80%", "100%" };
-                float[] values = { s.effAt60, s.effAt80, s.effAt100 };
-                string[] tooltips = { "TSA_WD_Food_Eff60Tip".Translate(), "TSA_WD_Food_Eff80Tip".Translate(), "TSA_WD_Food_Eff100Tip".Translate() };
-
-                SettingsUI.MultiColumnSlider(l, labels, values, new Vector2(0f, 1f), tooltips, 0.01f, SliderFormat.Percent);
-
-                // Update settings back from the multi-column array
-                s.effAt60 = values[0];
-                s.effAt80 = values[1];
-                s.effAt100 = values[2];
+                l.Gap(8f);
+                GUI.color = Color.gray;
+                l.Label("TSA_WD_Food_EffFlatNote".Translate());
+                GUI.color = Color.white;
 
                 l.Gap(20f);
-                if (l.ButtonText("TSA_WD_Food_Reset".Translate())) s.ResetFoodLogistics();
+                if (l.ButtonText("TSA_WD_Food_Reset".Translate()))
+                {
+                    s.ResetFoodLogistics();
+                    Find.World?.GetComponent<WorldComponent_LogisticsManager>()?.NotifyFoodSettingsChanged();
+                }
             }
             else
             {

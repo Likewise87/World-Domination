@@ -167,6 +167,7 @@ namespace TSA_WorldDomination.Outposts
         }
     }
 
+    [StaticConstructorOnStartup]
     [HarmonyPatch(typeof(Outpost), nameof(Outpost.DrawExtraSelectionOverlays))]
     public static class Patch_OutpostRoadOverlay
     {

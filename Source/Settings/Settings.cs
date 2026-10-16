@@ -630,6 +630,7 @@ namespace TSA_WorldDomination.Settings
             foodConsumptionPerPawn = DefFoodConsumptionPerPawn;
             foodProductionPerSkill = DefFoodProductionPerSkill;
             maxLogisticsRange = DefMaxLogisticsRange;
+            // Legacy scribe fields — unused for gameplay after efficiency flatten; keep for save compat.
             effAt60 = DefEffAt60;
             effAt80 = DefEffAt80;
             effAt100 = DefEffAt100;

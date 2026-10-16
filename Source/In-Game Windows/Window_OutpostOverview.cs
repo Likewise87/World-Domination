@@ -124,9 +124,7 @@ namespace WorldDomination
                     .Select(o => o as Outpost)
                     .Select(o => {
                         var lComp = o.GetComponent<CompOutpostLogistics>();
-                        float net = logi.GetDailyProduction(o) - logi.GetDailyDemand(o)
-                                    + logi.manualLinks.Where(l => l.destTile == o.Tile).Sum(l => l.manualAssignment * logi.GetEfficiency(l.sourceTile, l.destTile))
-                                    - logi.manualLinks.Where(l => l.sourceTile == o.Tile).Sum(l => l.manualAssignment);
+                        float net = logi != null ? logi.GetLogisticsNetDailyForOutpost(o) : 0f;
                         return new OutpostEntry
                         {
                             Outpost = o,
